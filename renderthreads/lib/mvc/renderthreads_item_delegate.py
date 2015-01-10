@@ -46,9 +46,10 @@ if(do_reload):
 # Globals
 # ------------------------------------------------------------------
 
-#Colors
+# Colors
 BLACK = renderthreads_globals.BLACK
 RED = renderthreads_globals.RED
+BLUE = renderthreads_globals.BLUE
 
 
 # RenderThreadsItemDelegate
@@ -319,9 +320,17 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         painter.setBrush(QtGui.QBrush(QtGui.QColor(RED)))
         painter.drawRect(rect_progress)
 
-        # pen text
+        # pen text progress
         painter.setPen(QtGui.QPen(QtGui.QColor(BLACK)))
         painter.drawText(option.rect, QtCore.Qt.AlignCenter, data.text())
+
+        
+        # job_count
+        job_count = '{0}'.format(data.maximum() - 1)
+
+        # pen text job_count
+        painter.setPen(QtGui.QPen(QtGui.QColor(BLUE)))
+        painter.drawText(option.rect, QtCore.Qt.AlignRight, job_count)
 
         #restore painter
         painter.restore()

@@ -25,6 +25,11 @@ do_reload = True
 
 # lib
 
+# renderthreads_globals
+from .. import renderthreads_globals
+if(do_reload):
+    reload(renderthreads_globals)
+
 # renderthreads_logging
 from .. import renderthreads_logging
 if(do_reload):
@@ -33,6 +38,10 @@ if(do_reload):
 
 # Globals
 # ------------------------------------------------------------------
+
+# Colors
+BLUE = renderthreads_globals.BLUE
+
 
 
 # RenderThreadsProgressBar class
@@ -160,3 +169,31 @@ class RenderThreadsProgressBar(QtGui.QProgressBar):
 
         # parent close event
         self.parent_class.closeEvent(event)
+
+
+    def paintEvent(self, event):
+        """
+        Customized paintEvent to display complete
+        job count.
+        """
+
+        # parent class paint event
+        self.parent_class.paintEvent(event)
+        
+        # painter
+        painter = QtGui.QPainter(self)
+        
+        # painter
+        painter.setPen(QtGui.QColor(BLUE))
+        
+        # font
+        font = QtGui.QFont()
+        font.setBold(True)
+        painter.setFont(font)
+
+        # job_count
+        job_count = 'jobs: {0}'.format(self.maximum() - 1)
+        
+        # drawText
+        painter.drawText(self.rect(), QtCore.Qt.AlignRight, job_count)
+        
