@@ -1,0 +1,25 @@
+
+
+
+#-------------------------
+#Ignore List
+#-------------------------
+
+
+#File extensions
+#-------------------------
+*.pyc
+*.pyo
+*.db
+
+
+#Folders
+#-------------------------
+docs/build
+
+
+#Allow specific folders and subfolders
+#(never allow .db though)
+#-------------------------
+!renderthreads/lib/third_party/**
+*.db
