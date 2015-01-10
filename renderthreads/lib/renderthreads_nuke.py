@@ -251,3 +251,12 @@ def get_script_path():
     """
 
     return nuke.root().name()
+
+
+def save_script():
+    """
+    Save the current script under the
+    same name.
+    """
+
+    nuke.scriptSave()

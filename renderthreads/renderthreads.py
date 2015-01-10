@@ -11,7 +11,7 @@ Script Editor.
 
 .. code::
 
-    from helga.nuke.rendering.renderthreads import renderthreads
+    from renderthreads import renderthreads
     reload(renderthreads)
 
     #run

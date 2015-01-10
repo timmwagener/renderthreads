@@ -98,6 +98,7 @@ WRITE_NODE_REPLACEMENT_TEMPLATE = renderthreads_globals.WRITE_NODE_REPLACEMENT_T
 INITIAL_THREAD_INTERVAL = renderthreads_globals.INITIAL_THREAD_INTERVAL
 INITIAL_THREAD_TIMEOUT = renderthreads_globals.INITIAL_THREAD_TIMEOUT
 INITIAL_DISPLAY_SHELL = renderthreads_globals.INITIAL_DISPLAY_SHELL
+INITIAL_SAVE_SCRIPT_BEFORE_RENDER = renderthreads_globals.INITIAL_SAVE_SCRIPT_BEFORE_RENDER
 
 
 #  logger (Module Level)
@@ -1019,6 +1020,15 @@ def create_general_options_menu(wdgt):
     wdgt.sldr_logging_level.set_tick_position(QtGui.QSlider.TicksBelow)
     wdgt.sldr_logging_level.set_tick_interval(1)
     lyt_frm_general_options.addWidget(wdgt.sldr_logging_level)
+
+    # sldr_save_script
+    wdgt.sldr_save_script = renderthreads_slider_widget.Slider(header = 'Save script before render',
+                                                                    minimum = 0,
+                                                                    maximum = 1,
+                                                                    initial_value = INITIAL_SAVE_SCRIPT_BEFORE_RENDER)
+    wdgt.sldr_save_script.set_tick_position(QtGui.QSlider.TicksBelow)
+    wdgt.sldr_save_script.set_tick_interval(1)
+    lyt_frm_general_options.addWidget(wdgt.sldr_save_script)
 
 
 def create_pbar_render(wdgt):

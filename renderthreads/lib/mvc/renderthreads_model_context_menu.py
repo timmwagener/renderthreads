@@ -637,6 +637,13 @@ class NodesContextMenu(QtGui.QMenu):
         selected in the model.
         """
 
+        # save
+        if (self.wdgt_main.sldr_save_script.get_value()):
+            # save
+            renderthreads_nuke.save_script()
+            # log
+            self.logger.debug('Script saved: {0}'.format(renderthreads_nuke.get_script_path()))
+
         # selected_indices_list
         selected_indices_list = self.get_selected_indices()
 
@@ -659,6 +666,13 @@ class NodesContextMenu(QtGui.QMenu):
         Render renderthread nodes which are currently
         in the model.
         """
+
+        # save
+        if (self.wdgt_main.sldr_save_script.get_value()):
+            # save
+            renderthreads_nuke.save_script()
+            # log
+            self.logger.debug('Script saved: {0}'.format(renderthreads_nuke.get_script_path()))
 
         # renderthread_node_list
         renderthread_node_list = self.model.get_data_list_flat()
