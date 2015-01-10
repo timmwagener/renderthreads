@@ -16,6 +16,8 @@
 #Folders
 #-------------------------
 docs/build
+renderthreads.egg-info
+dist
 
 
 #Allow specific folders and subfolders
