@@ -50,6 +50,7 @@ class RenderCommand(QtCore.QObject):
     # Signals
     # ------------------------------------------------------------------
     sgnl_task_done = QtCore.Signal()
+    sgnl_log_exitcode = QtCore.Signal(str)
 
     # Creation and Initialization
     # ------------------------------------------------------------------
@@ -199,11 +200,14 @@ class RenderCommand(QtCore.QObject):
             #finish thread
             thread.join()
 
-        # notify gui
-        self.sgnl_task_done.emit()
-
         #exitcode
         exitcode = self.process.returncode
+
+        # notify gui
+        self.sgnl_task_done.emit()
+        self.sgnl_log_exitcode.emit(str(exitcode))
+
+        # return
         return exitcode
 
 

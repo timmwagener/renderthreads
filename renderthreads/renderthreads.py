@@ -259,6 +259,21 @@ class RenderThreads(form_class, base_class):
 
         return self.dev
 
+    # Slots
+    # ------------------------------------------------------------------
+    @QtCore.Slot(str)
+    def log(self, msg):
+        """
+        Log msg with self.logger. This is
+        usefull because uncoupled classes
+        can log on the main logger without
+        being closely coupled using signals
+        and slots.
+        """
+
+        # log
+        self.logger.debug(msg)
+
     # Misc
     # ------------------------------------------------------------------
     def dummy_method(self, msg='dummy'):

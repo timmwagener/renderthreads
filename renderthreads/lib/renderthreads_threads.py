@@ -531,12 +531,28 @@ class ThreadManager(QtCore.QObject):
         Test parallel execution
         """
 
-        for i in range(count):
+        # iterate and add
+        for index in range(count):
             
-            def mul(x, y):
-                print x * y
+            # Multiply
+            class Multiply(object):
+
+                def __init__(self, x, y):
+                    self.x = x
+                    self.y = y
+                    self.logger = renderthreads_logging.get_logger(self.__class__.__name__)
+
+                def __call__(self):
+                    self.logger.debug(self.x * self.y)
+
+                def __cmp__(self, other):
+                    return cmp(self.x, other.x)
+
+            # multiply_instance
+            multiply_instance = Multiply(index, index + 1)
             
-            self.add_to_queue(mul, i, i + 1)
+            # add to queue
+            self.add_to_queue(multiply_instance)
 
         # log
         self.logger.debug('Added work to queue')

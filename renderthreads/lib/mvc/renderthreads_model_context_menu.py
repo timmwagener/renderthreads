@@ -172,15 +172,15 @@ class NodesContextMenu(QtGui.QMenu):
         # Separator
         self.mnu_render.addSeparator()
 
-        # acn_stop_render_selected
-        self.acn_stop_render_selected = QtGui.QAction('Stop render selected', self)
-        self.acn_stop_render_selected.setObjectName(self.__class__.__name__ + '_' + 'acn_stop_render_selected')
-        self.mnu_render.addAction(self.acn_stop_render_selected)
+        # acn_disable_render_selected
+        self.acn_disable_render_selected = QtGui.QAction('Disable selected', self)
+        self.acn_disable_render_selected.setObjectName(self.__class__.__name__ + '_' + 'acn_disable_render_selected')
+        self.mnu_render.addAction(self.acn_disable_render_selected)
 
-        # acn_stop_render_all
-        self.acn_stop_render_all = QtGui.QAction('Stop render all', self)
-        self.acn_stop_render_all.setObjectName(self.__class__.__name__ + '_' + 'acn_stop_render_all')
-        self.mnu_render.addAction(self.acn_stop_render_all)
+        # acn_disable_render_all
+        self.acn_disable_render_all = QtGui.QAction('Disable all', self)
+        self.acn_disable_render_all.setObjectName(self.__class__.__name__ + '_' + 'acn_disable_render_all')
+        self.mnu_render.addAction(self.acn_disable_render_all)
 
         # Separator
         self.addSeparator()
@@ -268,10 +268,10 @@ class NodesContextMenu(QtGui.QMenu):
         # acn_render_all
         self.acn_render_all.triggered.connect(functools.partial(self.render_all))
 
-        # acn_stop_render_selected
-        self.acn_stop_render_selected.triggered.connect(functools.partial(self.stop_render_selected))
-        # acn_stop_render_all
-        self.acn_stop_render_all.triggered.connect(functools.partial(self.stop_render_all))
+        # acn_disable_render_selected
+        self.acn_disable_render_selected.triggered.connect(functools.partial(self.disable_render_selected))
+        # acn_disable_render_all
+        self.acn_disable_render_all.triggered.connect(functools.partial(self.disable_render_all))
         
     # Style
     # ------------------------------------------------------------------
@@ -473,6 +473,8 @@ class NodesContextMenu(QtGui.QMenu):
             command_object.sgnl_task_done.connect(self.wdgt_main.pbar_render.increment_value)
             command_object.sgnl_task_done.connect(renderthreads_node.progressbar.increment_value)
             command_object.sgnl_task_done.connect(self.wdgt_main.nodes_view.update)
+            # sgnl_log_exitcode
+            command_object.sgnl_log_exitcode.connect(self.wdgt_main.log)
 
 
     def add_command_object_list_to_queue(self, renderthreads_node_to_command_object_list):
@@ -688,7 +690,7 @@ class NodesContextMenu(QtGui.QMenu):
 
 
     @QtCore.Slot()
-    def stop_render_selected(self):
+    def disable_render_selected(self):
         """
         Emit sgnl_command_set_enabled_for_identifier(identifier, False).
         This method does not STOP! the commands or
@@ -717,7 +719,7 @@ class NodesContextMenu(QtGui.QMenu):
 
 
     @QtCore.Slot()
-    def stop_render_all(self):
+    def disable_render_all(self):
         """
         Emit sgnl_command_set_enabled(False).
         This method does not STOP! the commands or
