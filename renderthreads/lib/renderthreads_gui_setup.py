@@ -101,6 +101,14 @@ INITIAL_DISPLAY_SHELL = renderthreads_globals.INITIAL_DISPLAY_SHELL
 INITIAL_LOG_EXITCODE_ERRORS_ONLY = renderthreads_globals.INITIAL_LOG_EXITCODE_ERRORS_ONLY
 INITIAL_SAVE_SCRIPT_BEFORE_RENDER = renderthreads_globals.INITIAL_SAVE_SCRIPT_BEFORE_RENDER
 
+WEBSITE_DOCS = renderthreads_globals.WEBSITE_DOCS
+WEBSITE_DOCS_QUICK = renderthreads_globals.WEBSITE_DOCS_QUICK
+WEBSITE_GITHUB = renderthreads_globals.WEBSITE_GITHUB
+WEBSITE_GITHUB_ISSUES = renderthreads_globals.WEBSITE_GITHUB_ISSUES
+WEBSITE_AUTHOR = renderthreads_globals.WEBSITE_AUTHOR
+WEBSITE_VIMEO = renderthreads_globals.WEBSITE_VIMEO
+WEBSITE_LINKEDIN = renderthreads_globals.WEBSITE_LINKEDIN
+
 
 #  logger (Module Level)
 #  ------------------------------------------------------------------
@@ -203,6 +211,53 @@ def create_stkwdgt_menu(wdgt):
     # acn_options
     wdgt.acn_options = wdgt.mnubar_stkwdgt.addAction('Options')
     wdgt.acn_options.setObjectName('acn_options')
+
+    
+    # mnu_about
+    wdgt.mnu_about = QtGui.QMenu('About', parent = wdgt)
+    wdgt.mnu_about.setObjectName('mnu_about')
+    wdgt.mnubar_stkwdgt.addMenu(wdgt.mnu_about)
+
+    #acn_open_website_docs
+    wdgt.acn_open_website_docs = QtGui.QAction('Docs', wdgt)
+    wdgt.acn_open_website_docs.setObjectName('acn_open_website_docs')
+    wdgt.mnu_about.addAction(wdgt.acn_open_website_docs)
+
+    #acn_open_website_docs_quick
+    wdgt.acn_open_website_docs_quick = QtGui.QAction('Qick intro', wdgt)
+    wdgt.acn_open_website_docs_quick.setObjectName('acn_open_website_docs_quick')
+    wdgt.mnu_about.addAction(wdgt.acn_open_website_docs_quick)
+
+    # Separator
+    wdgt.mnu_about.addSeparator()
+
+    #acn_open_website_github
+    wdgt.acn_open_website_github = QtGui.QAction('Github', wdgt)
+    wdgt.acn_open_website_github.setObjectName('acn_open_website_github')
+    wdgt.mnu_about.addAction(wdgt.acn_open_website_github)
+
+    #acn_open_website_github_issues
+    wdgt.acn_open_website_github_issues = QtGui.QAction('Issues', wdgt)
+    wdgt.acn_open_website_github_issues.setObjectName('acn_open_website_github_issues')
+    wdgt.mnu_about.addAction(wdgt.acn_open_website_github_issues)
+
+    # Separator
+    wdgt.mnu_about.addSeparator()
+
+    #acn_open_website_author
+    wdgt.acn_open_website_author = QtGui.QAction('Author', wdgt)
+    wdgt.acn_open_website_author.setObjectName('acn_open_website_author')
+    wdgt.mnu_about.addAction(wdgt.acn_open_website_author)
+
+    #acn_open_website_vimeo
+    wdgt.acn_open_website_vimeo = QtGui.QAction('Vimeo', wdgt)
+    wdgt.acn_open_website_vimeo.setObjectName('acn_open_website_vimeo')
+    wdgt.mnu_about.addAction(wdgt.acn_open_website_vimeo)
+
+    #acn_open_website_linkedin
+    wdgt.acn_open_website_linkedin = QtGui.QAction('Linkedin', wdgt)
+    wdgt.acn_open_website_linkedin.setObjectName('acn_open_website_linkedin')
+    wdgt.mnu_about.addAction(wdgt.acn_open_website_linkedin)
 
 
 def create_threads_menu(wdgt):
@@ -1189,6 +1244,28 @@ def connect_actions(wdgt):
     wdgt.acn_command_line.triggered.connect(functools.partial(wdgt.stkwdgt_content.setCurrentIndex, 2))
     # acn_options
     wdgt.acn_options.triggered.connect(functools.partial(wdgt.stkwdgt_content.setCurrentIndex, 3))
+
+    # acn_open_website_docs
+    wdgt.acn_open_website_docs.triggered.connect(functools.partial(renderthreads_gui_helper.open_website,
+                                                                    WEBSITE_DOCS))
+    # acn_open_website_docs_quick
+    wdgt.acn_open_website_docs_quick.triggered.connect(functools.partial(renderthreads_gui_helper.open_website,
+                                                                    WEBSITE_DOCS_QUICK))
+    # acn_open_website_github
+    wdgt.acn_open_website_github.triggered.connect(functools.partial(renderthreads_gui_helper.open_website,
+                                                                    WEBSITE_GITHUB))
+    # acn_open_website_github_issues
+    wdgt.acn_open_website_github_issues.triggered.connect(functools.partial(renderthreads_gui_helper.open_website,
+                                                                    WEBSITE_GITHUB_ISSUES))
+    # acn_open_website_author
+    wdgt.acn_open_website_author.triggered.connect(functools.partial(renderthreads_gui_helper.open_website,
+                                                                    WEBSITE_AUTHOR))
+    # acn_open_website_vimeo
+    wdgt.acn_open_website_vimeo.triggered.connect(functools.partial(renderthreads_gui_helper.open_website,
+                                                                    WEBSITE_VIMEO))
+    # acn_open_website_linkedin
+    wdgt.acn_open_website_linkedin.triggered.connect(functools.partial(renderthreads_gui_helper.open_website,
+                                                                    WEBSITE_LINKEDIN))
 
 
 def connect_widgets(wdgt):

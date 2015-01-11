@@ -5,7 +5,7 @@ renderthreads_gui_helper
 ==========================================
 
 This module encapsulates global ui related
-helper functions
+helper functions.
 """
 
 
@@ -14,6 +14,7 @@ helper functions
 # Python
 import os
 import logging
+import webbrowser
 # PySide
 from PySide import QtGui
 from PySide import QtCore
@@ -444,3 +445,18 @@ def pick_file(wdgt_display=None, filter_string=None):
 
     # return
     return file_path
+
+# Web
+# ------------------------------------------------------------------
+
+def open_website(url, new=2):
+    """
+    Wrapper around webbrowser.open().
+    """
+
+    try:
+        # open
+        webbrowser.open(url, new)
+    except:
+        # log
+        logger.error('Error opening {0}'.format(url))

@@ -110,3 +110,14 @@ INITIAL_LOG_EXITCODE_ERRORS_ONLY = 1  # Can be 0 or 1
 
 INITIAL_PRIORITY = 50  # Range is from 1 - 100. PriorityQueue values are negated so 1 is highest, 100 lowest
 INITIAL_SAVE_SCRIPT_BEFORE_RENDER = 1  # msec
+
+
+# Websites
+# ------------------------------------------------------------------
+WEBSITE_DOCS = r'http://renderthreads.readthedocs.org/'
+WEBSITE_DOCS_QUICK = r'http://renderthreads.readthedocs.org/'
+WEBSITE_GITHUB = r'https://github.com/timmwagener/renderthreads'
+WEBSITE_GITHUB_ISSUES = r'https://github.com/timmwagener/renderthreads/issues'
+WEBSITE_AUTHOR = r'http://www.timmwagener.com/'
+WEBSITE_VIMEO = r'http://vimeo.com/timmwagener'
+WEBSITE_LINKEDIN = r'https://www.linkedin.com/pub/timm-wagener/54/5a2/b55'
