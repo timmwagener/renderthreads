@@ -50,6 +50,11 @@ if(do_reload):
     reload(renderthreads_node)
 
 
+# Globals
+# ------------------------------------------------------------------
+TEXT_DIVIDER = renderthreads_globals.TEXT_DIVIDER
+
+
 # RenderThreadsModel
 # ------------------------------------------------------------------
 class RenderThreadsModel(QtCore.QAbstractTableModel):
@@ -173,7 +178,6 @@ class RenderThreadsModel(QtCore.QAbstractTableModel):
         # DisplayRole and EditRole (return identical in most cases,
         # if not then do recheck later)
         if (role == QtCore.Qt.DisplayRole or
-            role == QtCore.Qt.ToolTipRole or
             role == QtCore.Qt.EditRole):
 
             # column nuke_node
@@ -236,6 +240,55 @@ class RenderThreadsModel(QtCore.QAbstractTableModel):
             else:
                 # left
                 return QtCore.Qt.AlignLeft
+
+        # ToolTipRole
+        elif (role == QtCore.Qt.ToolTipRole):
+
+            # column nuke_node
+            if (current_header == self.header_name_list[0]):
+                
+                # nuke_node_full_name
+                nuke_node_full_name = renderthreads_node.fullName()
+                return nuke_node_full_name
+
+            # column start_frame
+            elif (current_header == self.header_name_list[1]):
+                
+                # start_frame
+                start_frame = renderthreads_node.start_frame
+                return start_frame
+
+            # column end_frame
+            elif (current_header == self.header_name_list[2]):
+                
+                # end_frame
+                end_frame = renderthreads_node.end_frame
+                return end_frame
+
+            # column progress
+            elif (current_header == self.header_name_list[3]):
+                
+                # progress_value
+                progress_value = renderthreads_node.get_progressbar().text()
+                return progress_value
+
+            # column priority
+            elif (current_header == self.header_name_list[4]):
+                
+                # priority
+                priority = renderthreads_node.get_priority()
+                
+                # priority_tooltip
+                priority_tooltip = 'Priority: {0}\n\
+{1}\n\
+Priority cannot be adjusted after job has been added.'.format(priority, TEXT_DIVIDER)
+                
+                # return
+                return priority_tooltip
+
+            else:
+                # evaluate in superclass
+                return None
         
         else:
 

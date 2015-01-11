@@ -192,7 +192,8 @@ class RenderCommand(QtCore.QObject):
         # start
         thread.start()
         # wait for timeout
-        thread.join(self.timeout)
+        timeout_in_seconds = self.timeout * 60
+        thread.join(timeout_in_seconds)
         
         # on timeout
         if(thread.is_alive()):

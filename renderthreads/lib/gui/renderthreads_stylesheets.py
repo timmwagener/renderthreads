@@ -123,6 +123,24 @@ QWidget#wdgt_stkwdgt_menu { background-color: %(black)s; \
 } \
 \
 \
+/* QWidget - stkwdgt_content */\
+QWidget#stkwdgt_content { background-color: %(white)s; \
+                            border: none; \
+} \
+\
+\
+/* QWidget - wdgt_header_spacer_bottom */\
+QWidget#wdgt_header_spacer_bottom { background-color: %(black)s; \
+                                    border: none; \
+} \
+\
+\
+/* QWidget - wdgt_header_spacer_top */\
+QWidget#wdgt_header_spacer_top { background-color: %(black)s; \
+                                    border: none; \
+} \
+\
+\
 \
 \
 \
@@ -210,7 +228,10 @@ QFrame#frm_command_line_complete { padding: 0px; \
 \
 /* QFrame - frm_command_line_header */\
 QFrame#frm_command_line_header { padding: 10px; \
-                                    border: 1px solid %(grey)s; \
+                                    border-left: 1px solid %(black)s; \
+                                    border-right: 1px solid %(black)s; \
+                                    border-bottom: none; \
+                                    border-top: 1px solid %(black)s; \
 } \
 \
 \
@@ -219,8 +240,8 @@ QFrame#frm_command_line { background-color: %(black)s; \
                             padding: 10px; \
                             border-left: 1px solid %(grey)s; \
                             border-right: 1px solid %(grey)s; \
-                            border-bottom: 1px solid %(grey)s; \
-                            border-top: none; \
+                            border-bottom: 1px solid %(red)s; \
+                            border-top: 1px solid %(red)s; \
 } \
 \
 \
@@ -266,6 +287,12 @@ QFrame#frm_general_options { padding: 10px; \
                                 border-right: 1px solid %(grey)s; \
                                 border-bottom: 1px solid %(grey)s; \
                                 border-top: none; \
+} \
+\
+\
+/* QFrame - frm_header_icon */\
+QFrame#frm_header_icon { background-color: %(black)s; \
+                            border: 1px solid %(white)s; \
 } \
 \
 \
@@ -366,7 +393,7 @@ QMenu::item:selected { color: %(red)s; \
 \
 \
 /* QSplitter - handle */\
-QSplitter::handle { background-color: %(blue)s; } \
+QSplitter::handle { background-color: %(red)s; } \
 \
 \
 \
@@ -447,8 +474,11 @@ RenderThreadsDockWidget::close-button:pressed, RenderThreadsDockWidget::float-bu
 \
 \
 /* RenderThreadsProgressBar */\
-RenderThreadsProgressBar { border: none;\
-                            background-color: %(grey)s;\
+RenderThreadsProgressBar { border-left: none; \
+                            border-top: 1px solid %(red)s; \
+                            border-bottom: none; \
+                            border-right: none; \
+                            background-color: %(black)s;\
                             color: %(white)s;\
                             text-align: center;\
 } \
@@ -465,7 +495,7 @@ RenderThreadsProgressBar::chunk { border: none;\
 \
 \
 /* QScrollBar - vertical */\
-QScrollBar:vertical { background-color: %(grey)s; \
+QScrollBar:vertical { background-color: %(black)s; \
                         border: none; \
 } \
 \
@@ -669,46 +699,42 @@ QSpinBox { background-color: %(white)s; \
 \
 \
 /* QSpinBox - up-button */\
-QSpinBox::up-button { background-color: %(white)s; \
+QSpinBox::up-button { background-color: %(red)s; \
                         color: %(black)s; \
                         border-left: none; \
-                        border-top: none; \
+                        border-top: 1px solid %(black)s; \
                         border-bottom: none; \
-                        border-right: none; \
-                        border-image: url(%(header_image)s) 1; \
+                        border-right: 1px solid %(black)s; \
 } \
 \
 \
 /* QSpinBox - up-button - hover */\
-QSpinBox::up-button:hover { background-color: %(red)s; \
+QSpinBox::up-button:hover { background-color: %(red_bright)s; \
                             color: %(black)s; \
                             border-left: none; \
-                            border-top: none; \
+                            border-top: 1px solid %(black)s; \
                             border-bottom: none; \
-                            border-right: none; \
-                            border-image: url(%(header_image)s) 1; \
+                            border-right: 1px solid %(black)s; \
 } \
 \
 \
 /* QSpinBox - down-button */\
-QSpinBox::down-button { background-color: %(white)s; \
+QSpinBox::down-button { background-color: %(red_dark)s; \
                         color: %(black)s; \
                         border-left: none; \
                         border-top: none; \
-                        border-bottom: none; \
-                        border-right: none; \
-                        border-image: url(%(header_image)s) 1; \
+                        border-bottom: 1px solid %(black)s; \
+                        border-right: 1px solid %(black)s; \
 } \
 \
 \
 /* QSpinBox - down-button - hover */\
-QSpinBox::down-button:hover { background-color: %(red)s; \
-                            color: %(black)s; \
-                            border-left: none; \
-                            border-top: none; \
-                            border-bottom: none; \
-                            border-right: none; \
-                            border-image: url(%(header_image)s) 1; \
+QSpinBox::down-button:hover { background-color: %(red_bright)s; \
+                                color: %(black)s; \
+                                border-left: none; \
+                                border-top: none; \
+                                border-bottom: 1px solid %(black)s; \
+                                border-right: 1px solid %(black)s; \
 } \
 \
 \

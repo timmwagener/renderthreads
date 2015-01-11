@@ -85,6 +85,10 @@ if(do_reload):
 TITLE = renderthreads_globals.TITLE
 VERSION = renderthreads_globals.VERSION
 
+BLACK = renderthreads_globals.BLACK
+RED = renderthreads_globals.RED
+BLUE = renderthreads_globals.BLUE
+
 ICON_RENDERTHREADS = renderthreads_globals.ICON_RENDERTHREADS
 
 INITIAL_LOGGING_LEVEL = renderthreads_globals.INITIAL_LOGGING_LEVEL
@@ -108,6 +112,14 @@ WEBSITE_GITHUB_ISSUES = renderthreads_globals.WEBSITE_GITHUB_ISSUES
 WEBSITE_AUTHOR = renderthreads_globals.WEBSITE_AUTHOR
 WEBSITE_VIMEO = renderthreads_globals.WEBSITE_VIMEO
 WEBSITE_LINKEDIN = renderthreads_globals.WEBSITE_LINKEDIN
+
+TT_THREADCOUNT = renderthreads_globals.TT_THREADCOUNT
+TT_THREAD_INTERVAL = renderthreads_globals.TT_THREAD_INTERVAL
+TT_THREAD_TIMEOUT = renderthreads_globals.TT_THREAD_TIMEOUT
+TT_DISPLAY_SHELL = renderthreads_globals.TT_DISPLAY_SHELL
+TT_LOG_EXITCODE_ERRORS_ONLY = renderthreads_globals.TT_LOG_EXITCODE_ERRORS_ONLY
+TT_LOGGING_LEVEL = renderthreads_globals.TT_LOGGING_LEVEL
+TT_SAVE_SCRIPT = renderthreads_globals.TT_SAVE_SCRIPT
 
 
 #  logger (Module Level)
@@ -149,16 +161,16 @@ def create_additional_ui(wdgt):
     The wdgt arg. expects the asset manager instance to operate on.
     """
 
-    #  make sure its floating intead of embedded
+    # make sure its floating intead of embedded
     wdgt.setWindowFlags(QtCore.Qt.Window)
 
-    #  set title
+    # set title
     wdgt.setWindowTitle(TITLE + ' ' + str(VERSION))
 
-    #  set icon
+    # set icon
     wdgt.setWindowIcon(QtGui.QIcon(ICON_RENDERTHREADS))
 
-    #  create_stkwdgt_menu
+    # create_stkwdgt_menu
     create_stkwdgt_menu(wdgt)
 
     # create_threads_menu
@@ -167,14 +179,17 @@ def create_additional_ui(wdgt):
     # create_command_line_menu
     create_command_line_menu(wdgt)
 
-    # create_options_menu
+    #create_options_menu
     create_options_menu(wdgt)
 
-    #  create_pbar_render
+    # create_pbar_render
     create_pbar_render(wdgt)
 
-    #  create_signal_remapper
+    # create_signal_remapper
     create_signal_remapper(wdgt)
+
+    # add_beta_tag
+    add_beta_tag(wdgt)
 
     # dev
     if (wdgt.is_dev()):
@@ -218,12 +233,12 @@ def create_stkwdgt_menu(wdgt):
     wdgt.mnu_about.setObjectName('mnu_about')
     wdgt.mnubar_stkwdgt.addMenu(wdgt.mnu_about)
 
-    #acn_open_website_docs
+    # acn_open_website_docs
     wdgt.acn_open_website_docs = QtGui.QAction('Docs', wdgt)
     wdgt.acn_open_website_docs.setObjectName('acn_open_website_docs')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_docs)
 
-    #acn_open_website_docs_quick
+    # acn_open_website_docs_quick
     wdgt.acn_open_website_docs_quick = QtGui.QAction('Qick intro', wdgt)
     wdgt.acn_open_website_docs_quick.setObjectName('acn_open_website_docs_quick')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_docs_quick)
@@ -231,12 +246,12 @@ def create_stkwdgt_menu(wdgt):
     # Separator
     wdgt.mnu_about.addSeparator()
 
-    #acn_open_website_github
+    # acn_open_website_github
     wdgt.acn_open_website_github = QtGui.QAction('Github', wdgt)
     wdgt.acn_open_website_github.setObjectName('acn_open_website_github')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_github)
 
-    #acn_open_website_github_issues
+    # acn_open_website_github_issues
     wdgt.acn_open_website_github_issues = QtGui.QAction('Issues', wdgt)
     wdgt.acn_open_website_github_issues.setObjectName('acn_open_website_github_issues')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_github_issues)
@@ -244,17 +259,17 @@ def create_stkwdgt_menu(wdgt):
     # Separator
     wdgt.mnu_about.addSeparator()
 
-    #acn_open_website_author
+    # acn_open_website_author
     wdgt.acn_open_website_author = QtGui.QAction('Author', wdgt)
     wdgt.acn_open_website_author.setObjectName('acn_open_website_author')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_author)
 
-    #acn_open_website_vimeo
+    # acn_open_website_vimeo
     wdgt.acn_open_website_vimeo = QtGui.QAction('Vimeo', wdgt)
     wdgt.acn_open_website_vimeo.setObjectName('acn_open_website_vimeo')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_vimeo)
 
-    #acn_open_website_linkedin
+    # acn_open_website_linkedin
     wdgt.acn_open_website_linkedin = QtGui.QAction('Linkedin', wdgt)
     wdgt.acn_open_website_linkedin.setObjectName('acn_open_website_linkedin')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_linkedin)
@@ -294,6 +309,7 @@ def create_sub_threads_menu(wdgt):
                                                                 initial_value = wdgt.thread_manager.get_thread_count())
     wdgt.sldr_threadcount.set_tick_position(QtGui.QSlider.TicksBelow)
     wdgt.sldr_threadcount.set_tick_interval(1)
+    wdgt.sldr_threadcount.setToolTip(TT_THREADCOUNT)
     frm_threads.addWidget(wdgt.sldr_threadcount)
 
     # sldr_thread_interval
@@ -303,16 +319,18 @@ def create_sub_threads_menu(wdgt):
                                                                 initial_value = INITIAL_THREAD_INTERVAL)
     wdgt.sldr_thread_interval.set_tick_position(QtGui.QSlider.TicksBelow)
     wdgt.sldr_thread_interval.set_tick_interval(100)
+    wdgt.sldr_thread_interval.setToolTip(TT_THREAD_INTERVAL)
     frm_threads.addWidget(wdgt.sldr_thread_interval)
 
     # sldr_thread_timeout
-    wdgt.sldr_thread_timeout = renderthreads_slider_widget.Slider(header = 'Thread Timeout (sec.)',
-                                                                    minimum = 10,
-                                                                    maximum = 1200,
+    wdgt.sldr_thread_timeout = renderthreads_slider_widget.Slider(header = 'Thread Timeout (min.)',
+                                                                    minimum = 1,
+                                                                    maximum = 120,
                                                                     tracking = False,
                                                                     initial_value = INITIAL_THREAD_TIMEOUT)
     wdgt.sldr_thread_timeout.set_tick_position(QtGui.QSlider.TicksBelow)
     wdgt.sldr_thread_timeout.set_tick_interval(10)
+    wdgt.sldr_thread_timeout.setToolTip(TT_THREAD_TIMEOUT)
     frm_threads.addWidget(wdgt.sldr_thread_timeout)
 
     # sldr_display_shell
@@ -322,6 +340,7 @@ def create_sub_threads_menu(wdgt):
                                                                     initial_value = INITIAL_DISPLAY_SHELL)
     wdgt.sldr_display_shell.set_tick_position(QtGui.QSlider.TicksBelow)
     wdgt.sldr_display_shell.set_tick_interval(1)
+    wdgt.sldr_display_shell.setToolTip(TT_DISPLAY_SHELL)
     frm_threads.addWidget(wdgt.sldr_display_shell)
 
     # sldr_log_exitcode_errors_only
@@ -331,6 +350,7 @@ def create_sub_threads_menu(wdgt):
                                                                     initial_value = INITIAL_LOG_EXITCODE_ERRORS_ONLY)
     wdgt.sldr_log_exitcode_errors_only.set_tick_position(QtGui.QSlider.TicksBelow)
     wdgt.sldr_log_exitcode_errors_only.set_tick_interval(1)
+    wdgt.sldr_log_exitcode_errors_only.setToolTip(TT_LOG_EXITCODE_ERRORS_ONLY)
     frm_threads.addWidget(wdgt.sldr_log_exitcode_errors_only)
 
     # btn_start_threads
@@ -1079,6 +1099,7 @@ def create_general_options_menu(wdgt):
                                                                     initial_value = INITIAL_LOGGING_LEVEL / 10)
     wdgt.sldr_logging_level.set_tick_position(QtGui.QSlider.TicksBelow)
     wdgt.sldr_logging_level.set_tick_interval(1)
+    wdgt.sldr_logging_level.setToolTip(TT_LOGGING_LEVEL)
     lyt_frm_general_options.addWidget(wdgt.sldr_logging_level)
 
     # sldr_save_script
@@ -1088,6 +1109,7 @@ def create_general_options_menu(wdgt):
                                                                     initial_value = INITIAL_SAVE_SCRIPT_BEFORE_RENDER)
     wdgt.sldr_save_script.set_tick_position(QtGui.QSlider.TicksBelow)
     wdgt.sldr_save_script.set_tick_interval(1)
+    wdgt.sldr_save_script.setToolTip(TT_SAVE_SCRIPT)
     lyt_frm_general_options.addWidget(wdgt.sldr_save_script)
 
 
@@ -1116,6 +1138,39 @@ def create_signal_remapper(wdgt):
 
     # signal_remapper
     wdgt.signal_remapper = renderthreads_signal_remapper.SignalRemapper()
+
+
+def add_beta_tag(wdgt):
+    """
+    Add beta tag to tool.
+    """
+
+    # lyt_header_spacer_right
+    lyt_header_spacer_right = QtGui.QVBoxLayout()
+
+    # set layout
+    wdgt.wdgt_header_spacer_right.setLayout(lyt_header_spacer_right)
+
+    # lbl_beta
+    wdgt.lbl_beta = QtGui.QLabel(text = 'beta', parent = wdgt)
+    wdgt.lbl_beta.setObjectName('lbl_beta')
+    wdgt.lbl_beta.setStyleSheet('QLabel#lbl_beta { background-color: %(black)s; color: %(blue)s;}' % {'black': BLACK.name(), 'blue': BLUE.name()})
+    lyt_header_spacer_right.addWidget(wdgt.lbl_beta)
+
+    # sp_lbl_beta
+    sp_lbl_beta = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Minimum)
+    wdgt.lbl_beta.setSizePolicy(sp_lbl_beta)
+
+    # wdgt_lbl_beta_spacer
+    wdgt_lbl_beta_spacer = QtGui.QWidget(parent = wdgt)
+    wdgt_lbl_beta_spacer.setObjectName('wdgt_lbl_beta_spacer')
+    renderthreads_gui_helper.correct_styled_background_attribute(wdgt_lbl_beta_spacer)
+    wdgt_lbl_beta_spacer.setStyleSheet('QWidget#wdgt_lbl_beta_spacer { background-color: %(black)s; color: %(blue)s;}' % {'black': BLACK.name(), 'blue': BLUE.name()})
+    lyt_header_spacer_right.addWidget(wdgt_lbl_beta_spacer)
+
+    # sp_lbl_beta_spacer
+    sp_lbl_beta_spacer = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Expanding)
+    wdgt_lbl_beta_spacer.setSizePolicy(sp_lbl_beta_spacer)
 
 
 def create_dev_ui(wdgt):
