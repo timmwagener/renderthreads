@@ -18,6 +18,8 @@ Script Editor.
     renderthreads.run(dev = True, dock_it = True)
 
 -----------------------
+Current Status: beta
+-----------------------
 
 **Author:** `Timm Wagener <mailto:wagenertimm@gmail.com>`_
 """
