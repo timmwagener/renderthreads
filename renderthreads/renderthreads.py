@@ -143,6 +143,7 @@ class RenderThreads(form_class, base_class):
     sgnl_command_set_enabled_for_identifier = QtCore.Signal(str, bool)
     sgnl_command_set_timeout = QtCore.Signal(int)
     sgnl_command_set_display_shell = QtCore.Signal(int)
+    sgnl_command_set_log_exitcode_errors_only = QtCore.Signal(int)
     
     
 
@@ -261,8 +262,8 @@ class RenderThreads(form_class, base_class):
 
     # Slots
     # ------------------------------------------------------------------
-    @QtCore.Slot(str)
-    def log(self, msg):
+    @QtCore.Slot(str, int)
+    def log(self, msg, logging_level):
         """
         Log msg with self.logger. This is
         usefull because uncoupled classes
@@ -272,7 +273,7 @@ class RenderThreads(form_class, base_class):
         """
 
         # log
-        self.logger.debug(msg)
+        self.logger.log(logging_level, msg)
 
     # Misc
     # ------------------------------------------------------------------

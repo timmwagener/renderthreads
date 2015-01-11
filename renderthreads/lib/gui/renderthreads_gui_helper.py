@@ -320,7 +320,7 @@ def insert_spacer_widget(wdgt_or_lyt, minimum_width=0, minimum_height=0, parent=
     lyt.addWidget(wdgt_spacer)
 
 
-def prepare_string_for_word_wrap(string_to_prepare, steps=40):
+def prepare_string_for_word_wrap(string_to_prepare, steps=20):
     """
     Insert spaces into string at steps
     to make sure word wrap has an effect.
@@ -331,20 +331,38 @@ def prepare_string_for_word_wrap(string_to_prepare, steps=40):
     # string_to_prepare_broken
     string_to_prepare_broken = ''
 
-    # break if long
-    for index, char in enumerate(string_to_prepare):
+    # step_count
+    step_count = 0
 
-        # steps reached
-        if not (index % steps):
+    # iterate
+    for char in string_to_prepare:
 
-            # add space
-            string_to_prepare_broken = string_to_prepare_broken + char + ' '
-        
+        # char is whitespace
+        if (char == ' '):
+
+            # reset step_count
+            step_count = 0
+
         # else
         else:
 
-            # add
-            string_to_prepare_broken = string_to_prepare_broken + char
+            # check step_count
+            if (step_count > steps):
+
+                # insert space
+                char = ' {0}'.format(char)
+
+                # reset step_count
+                step_count = 0
+
+            # else
+            else:
+
+                # increment step_count
+                step_count += 1
+
+        # append
+        string_to_prepare_broken += char
 
     # return
     return string_to_prepare_broken

@@ -50,7 +50,7 @@ class RenderCommand(QtCore.QObject):
     # Signals
     # ------------------------------------------------------------------
     sgnl_task_done = QtCore.Signal()
-    sgnl_log_exitcode = QtCore.Signal(str)
+    sgnl_log = QtCore.Signal(str, int)
 
     # Creation and Initialization
     # ------------------------------------------------------------------
@@ -70,7 +70,9 @@ class RenderCommand(QtCore.QObject):
                     timeout,
                     display_shell,
                     identifier,
-                    priority):
+                    priority,
+                    frame,
+                    log_exitcode_errors_only):
         """
         Customize RenderCommand instance.
         Parameter timeout is in seconds NOT in ms.
@@ -94,18 +96,23 @@ class RenderCommand(QtCore.QObject):
         # display_shell
         self.display_shell = display_shell
         # identifier
-        self.identifier = identifier
+        self.identifier = identifier  # nuke node full name
         # priority
         self.priority = priority
+        # frame
+        self.frame = frame
+        # log_exitcode_errors_only
+        self.log_exitcode_errors_only = log_exitcode_errors_only
 
         # process
         self.process = None
         # enabled
         self.enabled = True
         
-
+        # logger_name
+        self.logger_name = '{0}-{1}-{2}'.format(self.__class__.__name__, identifier, frame)
         # logger
-        self.logger = renderthreads_logging.get_logger(self.__class__.__name__)
+        self.logger = renderthreads_logging.get_logger(self.logger_name)
 
 
     # Operator overrides
@@ -142,6 +149,8 @@ class RenderCommand(QtCore.QObject):
 
             # notify gui
             self.sgnl_task_done.emit()
+            # log_exitcode
+            self.log_exitcode('disabled')
 
             # return 0 (0 being the code for "executed properly")
             return 0
@@ -158,9 +167,6 @@ class RenderCommand(QtCore.QObject):
             Target method to do the actual work.
             Wrapped by thread that terminates on timeout.
             """
-
-            # log
-            self.logger.debug(self.command)
 
             # env_dict
             env_dict = os.environ.copy()
@@ -205,10 +211,95 @@ class RenderCommand(QtCore.QObject):
 
         # notify gui
         self.sgnl_task_done.emit()
-        self.sgnl_log_exitcode.emit(str(exitcode))
+        # log_exitcode
+        self.log_exitcode(exitcode)
 
         # return
         return exitcode
+
+    def log_exitcode(self, exitcode):
+        """
+        Log exitcode in a formated way.
+        """
+
+        # log_message
+        log_message = self.get_log_message(exitcode)
+
+        # errors only
+        if (self.get_log_exitcode_errors_only()):
+
+            # if error
+            if (self.is_error(exitcode)):
+
+                # emit
+                self.sgnl_log.emit(log_message, logging.CRITICAL)
+
+        # else
+        else:
+
+            # emit
+            self.sgnl_log.emit(log_message, logging.DEBUG)
+
+    def get_log_message(self, exitcode):
+        """
+        Return log message according
+        to given exitcode.
+        """
+
+        # log_message_prefix
+        log_message_prefix = '{0}-{1}:'.format(self.identifier, self.frame)
+
+        # exitcode 'disabled'
+        if (exitcode == 'disabled'):
+            # log_message_suffix
+            log_message_suffix = 'Disabled.'
+
+        # exitcode None
+        elif (exitcode is None):
+            # log_message_suffix
+            log_message_suffix = 'Exitcode is None.'
+
+        # exitcode 0
+        elif (exitcode == 0):
+            # log_message_suffix
+            log_message_suffix = 'Frame rendered successfull.({0})'.format(exitcode)
+
+        # exitcode 1
+        elif (exitcode == 1):
+            # log_message_suffix
+            log_message_suffix = 'Process terminated, maybe because of too rigid timeout setting.({0})'.format(exitcode)
+
+        # exitcode 100
+        elif (exitcode == 100):
+            # log_message_suffix
+            log_message_suffix = 'Process terminated because of missing license.\
+Maybe pick -i (interactive) license flag.\
+The default uses a render license.({0})'.format(exitcode)
+
+        # unknown exitcode
+        else:
+            # log_message_suffix
+            log_message_suffix = 'Unknown exitcode.({0})'.format(exitcode)
+
+        
+        # log_message
+        log_message = log_message_prefix + ' ' + log_message_suffix
+        
+        #return
+        return log_message
+
+    def is_error(self, exitcode):
+        """
+        Return True or False wether or
+        not the exitcode is recognized as
+        error.
+        """
+
+        # no error
+        if (exitcode == 0):
+            return False
+
+        return True
 
 
     # Getter & Setter
@@ -314,3 +405,32 @@ class RenderCommand(QtCore.QObject):
         """
 
         self.identifier = value
+
+    def get_frame(self):
+        """
+        Return self.frame.
+        """
+
+        return self.frame
+
+    def set_frame(self, value):
+        """
+        Set self.frame.
+        """
+
+        self.frame = value
+
+    def get_log_exitcode_errors_only(self):
+        """
+        Return self.log_exitcode_errors_only.
+        """
+
+        return self.log_exitcode_errors_only
+
+    @QtCore.Slot(bool)
+    def set_log_exitcode_errors_only(self, value):
+        """
+        Set self.log_exitcode_errors_only.
+        """
+
+        self.log_exitcode_errors_only = value

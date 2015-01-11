@@ -98,6 +98,7 @@ WRITE_NODE_REPLACEMENT_TEMPLATE = renderthreads_globals.WRITE_NODE_REPLACEMENT_T
 INITIAL_THREAD_INTERVAL = renderthreads_globals.INITIAL_THREAD_INTERVAL
 INITIAL_THREAD_TIMEOUT = renderthreads_globals.INITIAL_THREAD_TIMEOUT
 INITIAL_DISPLAY_SHELL = renderthreads_globals.INITIAL_DISPLAY_SHELL
+INITIAL_LOG_EXITCODE_ERRORS_ONLY = renderthreads_globals.INITIAL_LOG_EXITCODE_ERRORS_ONLY
 INITIAL_SAVE_SCRIPT_BEFORE_RENDER = renderthreads_globals.INITIAL_SAVE_SCRIPT_BEFORE_RENDER
 
 
@@ -267,6 +268,15 @@ def create_sub_threads_menu(wdgt):
     wdgt.sldr_display_shell.set_tick_position(QtGui.QSlider.TicksBelow)
     wdgt.sldr_display_shell.set_tick_interval(1)
     frm_threads.addWidget(wdgt.sldr_display_shell)
+
+    # sldr_log_exitcode_errors_only
+    wdgt.sldr_log_exitcode_errors_only = renderthreads_slider_widget.Slider(header = 'Log exitcode errors only',
+                                                                    minimum = 0,
+                                                                    maximum = 1,
+                                                                    initial_value = INITIAL_LOG_EXITCODE_ERRORS_ONLY)
+    wdgt.sldr_log_exitcode_errors_only.set_tick_position(QtGui.QSlider.TicksBelow)
+    wdgt.sldr_log_exitcode_errors_only.set_tick_interval(1)
+    frm_threads.addWidget(wdgt.sldr_log_exitcode_errors_only)
 
     # btn_start_threads
     wdgt.btn_start_threads = QtGui.QPushButton('Re/Start threads')
@@ -1194,6 +1204,8 @@ def connect_widgets(wdgt):
     wdgt.sldr_thread_timeout.value_changed.connect(wdgt.sgnl_command_set_timeout)
     # sldr_display_shell
     wdgt.sldr_display_shell.value_changed.connect(wdgt.sgnl_command_set_display_shell)
+    # sldr_log_exitcode_errors_only
+    wdgt.sldr_log_exitcode_errors_only.value_changed.connect(wdgt.sgnl_command_set_log_exitcode_errors_only)
 
 
     # btn_start_threads

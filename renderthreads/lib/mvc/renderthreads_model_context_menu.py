@@ -411,6 +411,8 @@ class NodesContextMenu(QtGui.QMenu):
         timeout = self.wdgt_main.sldr_thread_timeout.get_value()
         # display_shell
         display_shell = self.wdgt_main.sldr_display_shell.get_value()
+        # log_exitcode_errors_only
+        log_exitcode_errors_only = self.wdgt_main.sldr_log_exitcode_errors_only.get_value()
 
         # iterate and add job
         for renderthreads_node in renderthreads_node_list:
@@ -438,7 +440,9 @@ class NodesContextMenu(QtGui.QMenu):
                                                                     timeout,
                                                                     display_shell,
                                                                     identifier,
-                                                                    negated_priority)
+                                                                    negated_priority,
+                                                                    frame,
+                                                                    log_exitcode_errors_only)
 
                 # append
                 renderthreads_node_to_command_object_list.append([renderthreads_node, command_object])
@@ -465,6 +469,8 @@ class NodesContextMenu(QtGui.QMenu):
             self.wdgt_main.sgnl_command_set_timeout.connect(command_object.set_timeout)
             # sgnl_command_set_display_shell
             self.wdgt_main.sgnl_command_set_display_shell.connect(command_object.set_display_shell)
+            # sgnl_command_set_log_exitcode_errors_only
+            self.wdgt_main.sgnl_command_set_log_exitcode_errors_only.connect(command_object.set_log_exitcode_errors_only)
             # sgnl_command_set_priority_for_identifier
             renderthreads_node.sgnl_command_set_priority_for_identifier.connect(command_object.set_priority_for_identifier)
 
@@ -474,7 +480,7 @@ class NodesContextMenu(QtGui.QMenu):
             command_object.sgnl_task_done.connect(renderthreads_node.progressbar.increment_value)
             command_object.sgnl_task_done.connect(self.wdgt_main.nodes_view.update)
             # sgnl_log_exitcode
-            command_object.sgnl_log_exitcode.connect(self.wdgt_main.log)
+            command_object.sgnl_log.connect(self.wdgt_main.log)
 
 
     def add_command_object_list_to_queue(self, renderthreads_node_to_command_object_list):
