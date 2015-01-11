@@ -285,9 +285,13 @@ class RenderThreadsNode(QtCore.QObject):
         frame_list = [10,11,12,......,20]
         """
 
+        # frame_range
+        frame_range = self._end_frame - self._start_frame
+
         # frame_list
-        frame_list = range(self._end_frame + 1)
-        frame_list = frame_list[self._start_frame:]
+        frame_list = [self._start_frame + index for
+                        index in 
+                        range(frame_range + 1)]
 
         # return
         return frame_list

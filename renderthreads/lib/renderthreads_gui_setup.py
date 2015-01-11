@@ -357,11 +357,6 @@ def create_queue_menu(wdgt):
     wdgt.btn_print_queue_size.setFlat(True)
     lyt_frm_queue.addWidget(wdgt.btn_print_queue_size)
 
-    # btn_reset_queue
-    wdgt.btn_reset_queue = QtGui.QPushButton('Reset queue')
-    wdgt.btn_reset_queue.setFlat(True)
-    lyt_frm_queue.addWidget(wdgt.btn_reset_queue)
-
 
 def create_command_line_menu(wdgt):
     """
@@ -1175,6 +1170,11 @@ def add_dev_menu(wdgt):
     wdgt.mnu_dev_threads.setObjectName('mnu_dev_threads')
     wdgt.mnu_dev.addMenu(wdgt.mnu_dev_threads)
 
+    #acn_reset_queue
+    wdgt.acn_reset_queue = QtGui.QAction('Reset Queue', wdgt)
+    wdgt.acn_reset_queue.setObjectName('acn_reset_queue')
+    wdgt.mnu_dev_threads.addAction(wdgt.acn_reset_queue)
+
     #acn_test_threads
     wdgt.acn_test_threads = QtGui.QAction('Test threads', wdgt)
     wdgt.acn_test_threads.setObjectName('acn_test_threads')
@@ -1293,8 +1293,6 @@ def connect_widgets(wdgt):
     
     # btn_print_queue_size
     wdgt.btn_print_queue_size.clicked.connect(wdgt.thread_manager.print_queue_size)
-    # btn_reset_queue
-    wdgt.btn_reset_queue.clicked.connect(wdgt.thread_manager.reset_queue)
 
     
     # btn_nuke_path
@@ -1335,6 +1333,8 @@ def connect_dev_ui(wdgt):
                                                                                         True,
                                                                                         True))
     
+    # acn_reset_queue
+    wdgt.acn_reset_queue.triggered.connect(wdgt.thread_manager.reset_queue)
     # acn_test_threads
     wdgt.acn_test_threads.triggered.connect(wdgt.thread_manager.test_setup)
 

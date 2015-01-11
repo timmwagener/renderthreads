@@ -360,3 +360,96 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
 
         # draw
         QtGui.QApplication.instance().style().drawControl(QtGui.QStyle.CE_ProgressBar, progressbar_option, painter)
+
+    
+    # Custom Editors
+    # ------------------------------------------------------------------
+
+    def createEditor(self, parent, option, index):
+        """
+        Virtual method of itemDelegate that creates an editor widget and returns
+        it when EditRole requests it.
+        """
+        
+        # index invalid
+        if not(index.isValid()):
+
+            # parent_class setEditorData
+            return self.parent_class.createEditor(parent, option, index)
+
+        # row & col
+        row = index.row()
+        col = index.column()
+
+        # nuke_node
+        if(col == 0):
+
+            # editor
+            editor = QtGui.QLineEdit(parent = parent)
+            return editor
+
+        # other columns
+        else:
+            
+            # parent_class setEditorData
+            return self.parent_class.createEditor(parent, option, index)
+
+    def setEditorData(self, editor, index):
+        """
+        Virtual method of itemDelegate that sets the editor data after
+        the editor is initialized.
+        """
+
+        # index invalid
+        if not(index.isValid()):
+
+            # parent_class setEditorData
+            return self.parent_class.setEditorData(editor, index)
+            
+        # data
+        data = index.data(QtCore.Qt.DisplayRole)
+
+        # row & col
+        row = index.row()
+        col = index.column()
+
+        
+        # nuke_node
+        if(col == 0):
+
+            # set
+            editor.setText(str(data.name()))
+
+        #other columns
+        else:
+            
+            #evaluate in superclass
+            self.parent_class.setEditorData(editor, index)
+
+    def setModelData(self, editor, model, index):
+        """
+        Set data into model.
+        """
+
+        # index invalid
+        if not(index.isValid()):
+
+            # parent_class setModelData
+            return self.parent_class.setModelData(editor, model, index)
+
+        # row & col
+        row = index.row()
+        col = index.column()
+
+        
+        # nuke_node
+        if(col == 0):
+
+            # set
+            model.setData(index, editor.text())
+
+        # other columns
+        else:
+            
+            # parent_class setModelData
+            self.parent_class.setModelData(editor, model, index)

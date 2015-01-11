@@ -15,7 +15,7 @@ Script Editor.
     reload(renderthreads)
 
     #run
-    renderthreads.run()
+    renderthreads.run(dev = True, dock_it = True)
 
 -----------------------
 
@@ -164,12 +164,9 @@ class RenderThreads(form_class, base_class):
         return renderthreads_instance
 
     def __init__(self,
-                dev=True,
-                dock_it=True,
-                thread_interval=2000,
-                export_thread_timeout=300,
-                hide_export_shell=True,
-                parent=renderthreads_gui_helper.get_nuke_main_window()):
+                    dev=False,
+                    dock_it=True,
+                    parent=renderthreads_gui_helper.get_nuke_main_window()):
         """
         Customize instance.
         """
@@ -354,11 +351,11 @@ class RenderThreads(form_class, base_class):
 
 # Run
 # ------------------------------------------------------------------
-def run():
+def run(dev=False, dock_it=True):
     """
     Standardized run() method.
     """
 
     # renderthreads_instance
-    renderthreads_instance = RenderThreads()
+    renderthreads_instance = RenderThreads(dev = dev, dock_it = dock_it)
     renderthreads_instance.show()
