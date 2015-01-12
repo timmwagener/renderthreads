@@ -5,11 +5,10 @@
 </div>
 -----------------------
 <div align="left">
-	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
-	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
-	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
-	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
-	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
+	<a href="http://www.kiiia.com/renderthreads/images/renderthreads_in_nuke.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/renderthreads/images/renderthreads_in_nuke.jpg"></a>
+	<a href="http://www.kiiia.com/renderthreads/images/renderthreads_threads.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/renderthreads/images/renderthreads_threads.jpg"></a>
+	<a href="http://www.kiiia.com/renderthreads/images/renderthreads_render_progress.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/renderthreads/images/renderthreads_render_progress.jpg"></a>
+	<a href="http://www.kiiia.com/renderthreads/images/renderthreads_command_line.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/renderthreads/images/renderthreads_command_line.jpg"></a>
 </div>
 -----------------------
 
@@ -25,13 +24,13 @@
 
 What is it ?
 -----------------------
-**renderthreads** is a [Python](https://www.python.org/) package that enables easy command-line multithreaded rendering for the popular compositing application [Nuke](http://www.thefoundry.co.uk/products/nuke/). You can find the documentation [here](http://renderthreads.readthedocs.org/).
+**renderthreads** is a [Python](https://www.python.org/) package that enables per-frame easy command-line multithreaded rendering for the popular compositing application [Nuke](http://www.thefoundry.co.uk/products/nuke/). You can find the documentation [here](http://renderthreads.readthedocs.org/).
 
 
 Features
 -----------------------
 * **Improve render speed**
-	Render paralell with all your cores.
+	Per-frame parallel command-line rendering made easy.
 * **Monitor and adjust while rendering**
 	You can adjust several parameters during command-line rendering, like the number of cores or the verbosity.
 * **Enable/disable jobs while rendering**
