@@ -107,6 +107,7 @@ INITIAL_SAVE_SCRIPT_BEFORE_RENDER = renderthreads_globals.INITIAL_SAVE_SCRIPT_BE
 
 WEBSITE_DOCS = renderthreads_globals.WEBSITE_DOCS
 WEBSITE_DOCS_QUICK = renderthreads_globals.WEBSITE_DOCS_QUICK
+WEBSITE_PYPI = renderthreads_globals.WEBSITE_PYPI
 WEBSITE_GITHUB = renderthreads_globals.WEBSITE_GITHUB
 WEBSITE_GITHUB_ISSUES = renderthreads_globals.WEBSITE_GITHUB_ISSUES
 WEBSITE_AUTHOR = renderthreads_globals.WEBSITE_AUTHOR
@@ -245,13 +246,21 @@ def create_stkwdgt_menu(wdgt):
     # Separator
     wdgt.mnu_about.addSeparator()
 
+    # acn_open_website_pypi
+    wdgt.acn_open_website_pypi = QtGui.QAction('PyPI', wdgt)
+    wdgt.acn_open_website_pypi.setObjectName('acn_open_website_pypi')
+    wdgt.mnu_about.addAction(wdgt.acn_open_website_pypi)
+
+    # Separator
+    wdgt.mnu_about.addSeparator()
+
     # acn_open_website_github
     wdgt.acn_open_website_github = QtGui.QAction('Github', wdgt)
     wdgt.acn_open_website_github.setObjectName('acn_open_website_github')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_github)
 
     # acn_open_website_github_issues
-    wdgt.acn_open_website_github_issues = QtGui.QAction('Issues', wdgt)
+    wdgt.acn_open_website_github_issues = QtGui.QAction('Report a bug', wdgt)
     wdgt.acn_open_website_github_issues.setObjectName('acn_open_website_github_issues')
     wdgt.mnu_about.addAction(wdgt.acn_open_website_github_issues)
 
@@ -1263,6 +1272,9 @@ def connect_actions(wdgt):
     # acn_open_website_docs_quick
     wdgt.acn_open_website_docs_quick.triggered.connect(functools.partial(renderthreads_gui_helper.open_website,
                                                                     WEBSITE_DOCS_QUICK))
+    # acn_open_website_pypi
+    wdgt.acn_open_website_pypi.triggered.connect(functools.partial(renderthreads_gui_helper.open_website,
+                                                                    WEBSITE_PYPI))
     # acn_open_website_github
     wdgt.acn_open_website_github.triggered.connect(functools.partial(renderthreads_gui_helper.open_website,
                                                                     WEBSITE_GITHUB))
