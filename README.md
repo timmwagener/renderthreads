@@ -2,11 +2,13 @@
 
 renderthreads
 =================
-
 <div align="center">
 	<a href="http://renderthreads.readthedocs.org/" target="_blank"><img src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
 </div>
-
+-----------------------
+<div align="center">
+	<a href="http://renderthreads.readthedocs.org/" target="_blank"><img width="50" height="50" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
+</div>
 -----------------------
 [![Documentation Status](https://readthedocs.org/projects/renderthreads/badge/?version=latest)](https://readthedocs.org/projects/renderthreads/?badge=latest)
 -----------------------
@@ -24,5 +26,6 @@ Features
 * **Monitor and adjust while rendering**
 	You can adjust several parameters during command-line rendering, like the number of cores or the verbosity.
 * **Enable/disable jobs while rendering**
-	More flexible and fine grained than default *divide and render* approach due to task queue. You can stop renderings while they are running.
-
+	More flexible and fine grained than default *divide and render* approach due to task queue. You can disable the rest of the range of jobs during the rendering.
+* **Easy Commandline management**
+	Adjust the command line via UI.
