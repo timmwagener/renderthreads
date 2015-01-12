@@ -5,11 +5,11 @@
 </div>
 -----------------------
 <div align="left">
-	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="100" height="100" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
-	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="100" height="100" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
-	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="100" height="100" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
-	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="100" height="100" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
-	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="100" height="100" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
+	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
+	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
+	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
+	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
+	<a href="http://www.kiiia.com/helga/images/github_readme_header.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
 </div>
 -----------------------
 
