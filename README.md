@@ -6,11 +6,14 @@ renderthreads
 	<a href="http://renderthreads.readthedocs.org/" target="_blank"><img src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
 </div>
 -----------------------
-<div align="center">
+<div align="left">
 	<a href="http://renderthreads.readthedocs.org/" target="_blank"><img width="50" height="50" src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
 </div>
 -----------------------
 [![Documentation Status](https://readthedocs.org/projects/renderthreads/badge/?version=latest)](https://readthedocs.org/projects/renderthreads/?badge=latest)
+.. image:: https://pypip.in/download/renderthreads/badge.svg
+    :target: https://pypi.python.org/pypi//renderthreads/
+    :alt: Downloads
 -----------------------
 
 
