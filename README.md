@@ -21,10 +21,6 @@
 
 -----------------------
 
-[Documentation](https://www.python.org/) [Quickstart](https://www.python.org/) [Download](https://www.python.org/) [Vimeo](https://www.python.org/) [Author](https://www.python.org/)
-
------------------------
-
 
 What is it ?
 -----------------------
@@ -41,3 +37,10 @@ Features
 	More flexible and fine grained than default *divide and render* approach due to task queue. You can disable the rest of the range of jobs during the rendering.
 * **Easy Commandline management**
 	Adjust the command line via UI.
+
+-----------------------
+
+[**Documentation**](https://www.python.org/) [Quickstart](https://www.python.org/) [Download](https://www.python.org/) [Vimeo](https://www.python.org/) [Author](https://www.python.org/)
+
+-----------------------
+
