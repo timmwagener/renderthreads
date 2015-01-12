@@ -1,9 +1,7 @@
 
 
-renderthreads
-=================
 <div align="center">
-	<a href="http://renderthreads.readthedocs.org/" target="_blank"><img src="http://www.kiiia.com/helga/images/github_readme_header.jpg"></a>
+	<a href="http://renderthreads.readthedocs.org/" target="_blank"><img src="http://www.kiiia.com/renderthreads/images/renderthreads_github_header.png"></a>
 </div>
 -----------------------
 <div align="left">
