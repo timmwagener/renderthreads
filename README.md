@@ -21,6 +21,10 @@
 
 -----------------------
 
+[Documentation](https://www.python.org/) [Quickstart](https://www.python.org/) [Download](https://www.python.org/) [Vimeo](https://www.python.org/) [Author](https://www.python.org/)
+
+-----------------------
+
 
 What is it ?
 -----------------------
