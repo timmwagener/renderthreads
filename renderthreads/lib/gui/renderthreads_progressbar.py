@@ -38,10 +38,8 @@ if(do_reload):
 
 # Globals
 # ------------------------------------------------------------------
-
 # Colors
 BLUE = renderthreads_globals.BLUE
-
 
 
 # RenderThreadsProgressBar class
@@ -124,9 +122,8 @@ class RenderThreadsProgressBar(QtGui.QProgressBar):
 
     # Slots
     # ------------------------------------------------------------------
-
     @QtCore.Slot(int)
-    def increment_range(self, step = 1):
+    def increment_range(self, step=1):
         """
         Increment range by step.
         """
@@ -134,9 +131,8 @@ class RenderThreadsProgressBar(QtGui.QProgressBar):
         # set
         self.setMaximum(self.maximum() + step)
 
-
     @QtCore.Slot(int)
-    def increment_value(self, step = 1):
+    def increment_value(self, step=1):
         """
         Increment value by step.
         """
@@ -146,7 +142,7 @@ class RenderThreadsProgressBar(QtGui.QProgressBar):
 
         # if new value == maximum - 1
         if (new_value >= (self.maximum() - 1)):
-            
+
             # set
             self.setValue(0)
             # reset
@@ -154,14 +150,12 @@ class RenderThreadsProgressBar(QtGui.QProgressBar):
 
         # else increment
         else:
-            
+
             # set
             self.setValue(new_value)
 
-    
     # Events
     # ------------------------------------------------------------------
-
     def closeEvent(self, event):
         """
         Customized closeEvent
@@ -169,7 +163,6 @@ class RenderThreadsProgressBar(QtGui.QProgressBar):
 
         # parent close event
         self.parent_class.closeEvent(event)
-
 
     def paintEvent(self, event):
         """
@@ -179,13 +172,13 @@ class RenderThreadsProgressBar(QtGui.QProgressBar):
 
         # parent class paint event
         self.parent_class.paintEvent(event)
-        
+
         # painter
         painter = QtGui.QPainter(self)
-        
+
         # painter
         painter.setPen(QtGui.QColor(BLUE))
-        
+
         # font
         font = QtGui.QFont()
         font.setBold(True)
@@ -193,7 +186,6 @@ class RenderThreadsProgressBar(QtGui.QProgressBar):
 
         # job_count
         job_count = 'jobs: {0}'.format(self.maximum() - 1)
-        
+
         # drawText
         painter.drawText(self.rect(), QtCore.Qt.AlignRight, job_count)
-        

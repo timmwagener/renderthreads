@@ -62,8 +62,7 @@ def get_command_line_string(wdgt,
     nuke_path = wdgt.le_nuke_path.text()
     # flag_list
     flag_list = wdgt.command_line_flag_list
-    
-    
+
     # command_line_string
     command_line_string = r'"{0}"'.format(nuke_path)
     command_line_string += ' '
@@ -104,14 +103,13 @@ def get_flag_string(flag_list,
 
             # append flag
             flag_string += flag.get_flag()
-            
+
             # last entry
             if not (index == len(flag_list) - 1):
-                
+
                 # add space
                 flag_string += ' '
 
-    
     # renderthreads_node
     if not(renderthreads_node is None):
 
@@ -124,7 +122,6 @@ def get_flag_string(flag_list,
         # replace template
         flag_string = pattern.sub('-X {0}'.format(write_node_name), flag_string)
 
-
     # frame
     if not(frame is None):
 
@@ -136,5 +133,3 @@ def get_flag_string(flag_list,
 
     # return
     return flag_string
-
-

@@ -272,6 +272,7 @@ def correct_styled_background_attribute(wdgt):
             # styled_background
             wdgt.setAttribute(QtCore.Qt.WA_StyledBackground, True)
 
+
 def set_margins_and_spacing_for_child_layouts(wdgt, margin_list=[0, 0, 0, 0]):
     """
     Eliminate margin and spacing for all layout widgets.
@@ -429,7 +430,7 @@ def pick_file(wdgt_display=None, filter_string=None):
 
         # setText()
         if (type(wdgt_display) is QtGui.QLineEdit or
-            type(wdgt_display) is QtGui.QLabel):
+                type(wdgt_display) is QtGui.QLabel):
 
             # set
             wdgt_display.setText(file_path)
@@ -446,9 +447,9 @@ def pick_file(wdgt_display=None, filter_string=None):
     # return
     return file_path
 
+
 # Web
 # ------------------------------------------------------------------
-
 def open_website(url, new=2):
     """
     Wrapper around webbrowser.open().

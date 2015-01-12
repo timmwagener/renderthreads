@@ -17,27 +17,27 @@ from PySide import QtCore
 # nuke
 import nuke
 
-#  Import variable
+# Import variable
 do_reload = True
 
 
-#  renderthreads
+# renderthreads
 
-#  lib
+# lib
 
-#  renderthreads_globals
+# renderthreads_globals
 from .. import renderthreads_globals
 if(do_reload):
     reload(renderthreads_globals)
 
-#  renderthreads_logging
+# renderthreads_logging
 from .. import renderthreads_logging
 if(do_reload):
     reload(renderthreads_logging)
 
 # lib.gui
 
-#  renderthreads_progressbar
+# renderthreads_progressbar
 from ..gui import renderthreads_progressbar
 if(do_reload):
     reload(renderthreads_progressbar)
@@ -45,7 +45,6 @@ if(do_reload):
 
 # Globals
 # ------------------------------------------------------------------
-
 # Colors
 BLACK = renderthreads_globals.BLACK
 RED = renderthreads_globals.RED
@@ -61,7 +60,6 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
 
     # Creation and Initialization
     # ------------------------------------------------------------------
-
     def __new__(cls, *args, **kwargs):
         """
         RenderThreadsItemDelegate instance factory.
@@ -72,16 +70,14 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
 
         return renderthreads_item_delegate_instance
 
-    
     def __init__(self,
                     parent=None):
         """
         Customize instance.
         """
-        
+
         # super and objectName
         # ------------------------------------------------------------------
-        
         # parent_class
         self.parent_class = super(RenderThreadsItemDelegate, self)
         self.parent_class.__init__(parent=parent)
@@ -91,14 +87,11 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
 
         # instance variables
         # ------------------------------------------------------------------
-        
         # logger
         self.logger = renderthreads_logging.get_logger(self.__class__.__name__)
 
-
     # Size Hint
     # ------------------------------------------------------------------
-
     def sizeHint(self, option, index):
         """
         Returns the size for a type a certain index represents.
@@ -108,13 +101,13 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         #. Lists
         #. nuke.Node
         """
-        
+
         # index invalid
         if not(index.isValid()):
 
             # parent_class sizeHint
             return self.parent_class.sizeHint(option, index)
-            
+
         # data
         data = index.data(QtCore.Qt.DisplayRole)
 
@@ -122,21 +115,20 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         row = index.row()
         col = index.column()
 
-
         # check types
 
         # list
         if(type(data) is list):
-            
+
             # value_string
             value_string = ''
             for index, value in enumerate(data):
-                
+
                 # last value
                 if(index == len(data) - 1):
                     value_string += str(value)
                     continue
-                
+
                 # append
                 value_string += str(value + ';\n')
 
@@ -148,23 +140,22 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         # nuke.Node
         elif(type(data) is nuke.Node):
 
-            #value_string
+            # value_string
             value_string = data.fullName()
 
             # text_size
             q_font_metrics = QtGui.QFontMetrics(QtGui.QApplication.font())
             text_size = q_font_metrics.size(0, value_string)
             return text_size
-        
+
         # other type
         else:
-            
+
             # parent_class sizeHint
             return self.parent_class.sizeHint(option, index)
 
     # Paint
     # ------------------------------------------------------------------
-
     def paint(self, painter, option, index):
         """
         Define the look of the current item based on its type.
@@ -177,7 +168,7 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
 
         # index invalid
         if not(index.isValid()):
-            
+
             # parent_class paint
             self.parent_class.paint(painter, option, index)
             return
@@ -197,19 +188,19 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
 
         # nuke.Node
         elif(type(data) is nuke.Node):
-            
+
             # paint_nuke_node
             self.paint_nuke_node(painter, option, data)
 
         # renderthreads_progressbar.RenderThreadsProgressBar
         elif(type(data) is renderthreads_progressbar.RenderThreadsProgressBar):
-            
+
             # paint_renderthreads_progressbar
             self.paint_renderthreads_progressbar(painter, option, data)
 
         # other type
         else:
-            
+
             # parent_class paint
             self.parent_class.paint(painter, option, index)
 
@@ -219,49 +210,48 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         line for each list entry.
         """
 
-        #save painter
+        # save painter
         painter.save()
-        
-        #value_string
+
+        # value_string
         value_string = ''
         for index, value in enumerate(data):
-            
-            #last value
+
+            # last value
             if(index == len(data) - 1):
                 value_string += str(value)
                 continue
-            
-            #append
+
+            # append
             value_string += str(value + ';\n')
 
-
-        #draw
+        # draw
         painter.drawText(option.rect, QtCore.Qt.AlignLeft, value_string)
 
-        #restore painter
+        # restore painter
         painter.restore()
 
     def paint_nuke_node(self, painter, option, data):
         """
-        Paint nuke.Node as string 
+        Paint nuke.Node as string
         consisting of nuke_node full name.
         """
 
-        #save painter
+        # save painter
         painter.save()
-        
-        #value_string
+
+        # value_string
         value_string = str(data.fullName())
 
-        #draw
+        # draw
         painter.drawText(option.rect, QtCore.Qt.AlignLeft, value_string)
 
-        #restore painter
+        # restore painter
         painter.restore()
 
-    def paint_renderthreads_progressbar(self, painter, option, data, custom = True):
+    def paint_renderthreads_progressbar(self, painter, option, data, custom=True):
         """
-        Paint renderthreads_progressbar.RenderThreadsProgressBar 
+        Paint renderthreads_progressbar.RenderThreadsProgressBar
         as QStyleOptionProgressBar in ui.
         """
 
@@ -277,14 +267,13 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
             # style option
             self.paint_renderthreads_progressbar_style_option(painter, option, data)
 
-
     def paint_renderthreads_progressbar_custom(self, painter, option, data):
         """
-        Paint renderthreads_progressbar.RenderThreadsProgressBar 
+        Paint renderthreads_progressbar.RenderThreadsProgressBar
         as QStyleOptionProgressBar in ui.
         """
 
-        #save painter
+        # save painter
         painter.save()
 
         # no pen
@@ -306,7 +295,6 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         if (value):
             percent = value / maximum
 
-
         # x, y, width, height
         x = option.rect.x()
         y = option.rect.y()
@@ -324,7 +312,6 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         painter.setPen(QtGui.QPen(QtGui.QColor(BLACK)))
         painter.drawText(option.rect, QtCore.Qt.AlignCenter, data.text())
 
-        
         # job_count
         job_count = '{0}'.format(data.maximum() - 1)
 
@@ -332,13 +319,12 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         painter.setPen(QtGui.QPen(QtGui.QColor(BLUE)))
         painter.drawText(option.rect, QtCore.Qt.AlignRight, job_count)
 
-        #restore painter
+        # restore painter
         painter.restore()
 
-    
     def paint_renderthreads_progressbar_style_option(self, painter, option, data):
         """
-        Paint renderthreads_progressbar.RenderThreadsProgressBar 
+        Paint renderthreads_progressbar.RenderThreadsProgressBar
         as QStyleOptionProgressBar in ui.
         """
 
@@ -348,7 +334,7 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         minimum = data.minimum()
         # value
         value = data.value()
-        
+
         # progressbar_option
         progressbar_option = QtGui.QStyleOptionProgressBarV2()
         progressbar_option.rect = option.rect
@@ -361,16 +347,14 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         # draw
         QtGui.QApplication.instance().style().drawControl(QtGui.QStyle.CE_ProgressBar, progressbar_option, painter)
 
-    
     # Custom Editors
     # ------------------------------------------------------------------
-
     def createEditor(self, parent, option, index):
         """
         Virtual method of itemDelegate that creates an editor widget and returns
         it when EditRole requests it.
         """
-        
+
         # index invalid
         if not(index.isValid()):
 
@@ -385,12 +369,12 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         if(col == 0):
 
             # editor
-            editor = QtGui.QLineEdit(parent = parent)
+            editor = QtGui.QLineEdit(parent=parent)
             return editor
 
         # other columns
         else:
-            
+
             # parent_class setEditorData
             return self.parent_class.createEditor(parent, option, index)
 
@@ -405,7 +389,7 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
 
             # parent_class setEditorData
             return self.parent_class.setEditorData(editor, index)
-            
+
         # data
         data = index.data(QtCore.Qt.DisplayRole)
 
@@ -413,17 +397,16 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         row = index.row()
         col = index.column()
 
-        
         # nuke_node
         if(col == 0):
 
             # set
             editor.setText(str(data.name()))
 
-        #other columns
+        # other columns
         else:
-            
-            #evaluate in superclass
+
+            # evaluate in superclass
             self.parent_class.setEditorData(editor, index)
 
     def setModelData(self, editor, model, index):
@@ -441,7 +424,6 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
         row = index.row()
         col = index.column()
 
-        
         # nuke_node
         if(col == 0):
 
@@ -450,6 +432,6 @@ class RenderThreadsItemDelegate(QtGui.QStyledItemDelegate):
 
         # other columns
         else:
-            
+
             # parent_class setModelData
             self.parent_class.setModelData(editor, model, index)

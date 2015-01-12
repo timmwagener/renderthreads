@@ -71,12 +71,12 @@ class Slider(QtGui.QWidget):
         return slider_instance
 
     def __init__(self,
-                    header = 'Slider',
-                    minimum = 0,
-                    maximum = 99,
-                    initial_value = 50,
+                    header='Slider',
+                    minimum=0,
+                    maximum=99,
+                    initial_value=50,
                     tracking=True,
-                    parent = None):
+                    parent=None):
         """
         Slider instance customization.
         """
@@ -90,7 +90,6 @@ class Slider(QtGui.QWidget):
 
         # objectName
         self.setObjectName(self.__class__.__name__)
-
 
         # instance variables
         # ------------------------------------------------------------------
@@ -111,7 +110,6 @@ class Slider(QtGui.QWidget):
         # logger
         self.logger = renderthreads_logging.get_logger(self.__class__.__name__)
 
-
         # Init procedure
         # ------------------------------------------------------------------
         # setup_ui
@@ -125,7 +123,6 @@ class Slider(QtGui.QWidget):
 
     # UI setup methods
     # ------------------------------------------------------------------
-    
     def setup_ui(self):
         """
         Setup additional UI.
@@ -135,7 +132,7 @@ class Slider(QtGui.QWidget):
         self.lyt_slider = QtGui.QVBoxLayout(self)
 
         # lbl_slider
-        self.lbl_slider = QtGui.QLabel(text = self.header)
+        self.lbl_slider = QtGui.QLabel(text=self.header)
         self.lbl_slider.setObjectName(self.__class__.__name__ + type(self.lbl_slider).__name__)
         self.lyt_slider.addWidget(self.lbl_slider)
 
@@ -148,7 +145,7 @@ class Slider(QtGui.QWidget):
 
         # slider
         self.slider = QtGui.QSlider()
-        self.slider.setObjectName(self.__class__.__name__ + 
+        self.slider.setObjectName(self.__class__.__name__ +
                                     type(self.slider).__name__)
         self.slider.setOrientation(QtCore.Qt.Horizontal)
         self.slider.setRange(self.minimum, self.maximum)
@@ -156,20 +153,18 @@ class Slider(QtGui.QWidget):
         self.slider.setTracking(self.tracking)
         self.lyt_wdgt_slider_and_display.addWidget(self.slider)
 
-        #lcd_slider_value
+        # lcd_slider_value
         self.lcd_slider_value = QtGui.QLCDNumber()
         self.lcd_slider_value.display(self.initial_value)
         self.lyt_wdgt_slider_and_display.addWidget(self.lcd_slider_value)
-
 
     def connect_ui(self):
         """
         Connect UI widgets with slots or functions.
         """
-        
+
         # slider
         self.slider.valueChanged.connect(self.on_value_changed)
-
 
     def style_ui(self):
         """
@@ -181,9 +176,6 @@ class Slider(QtGui.QWidget):
 
         # set_margins_and_spacing_for_child_layouts
         renderthreads_gui_helper.set_margins_and_spacing_for_child_layouts(self)
-
-        # adjust size (Shrink to minimum size)
-        # self.wdgt_slider_complete.adjustSize()
 
     # Getter and Setter
     # ------------------------------------------------------------------
@@ -212,7 +204,6 @@ class Slider(QtGui.QWidget):
 
     # Slots
     # ------------------------------------------------------------------
-
     @QtCore.Slot(int)
     def on_value_changed(self, value):
         """
@@ -221,10 +212,6 @@ class Slider(QtGui.QWidget):
 
         # change display
         self.lcd_slider_value.display(value)
-        
+
         # emit value_changed
         self.value_changed.emit(value)
-
-    
-
-

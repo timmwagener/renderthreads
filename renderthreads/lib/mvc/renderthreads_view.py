@@ -8,8 +8,6 @@ nodes.
 """
 
 
-
-
 # Import
 # ------------------------------------------------------------------
 # python
@@ -38,10 +36,6 @@ if(do_reload):
     reload(renderthreads_logging)
 
 
-
-
-
-
 # RenderThreadsView
 # ------------------------------------------------------------------
 class RenderThreadsView(QtGui.QTableView):
@@ -58,14 +52,13 @@ class RenderThreadsView(QtGui.QTableView):
         renderthreads_view_instance = super(RenderThreadsView, cls).__new__(cls, args, kwargs)
 
         return renderthreads_view_instance
-    
-    
+
     def __init__(self,
                 parent=None):
-    	"""
-    	Customize instance.
-    	"""
-        
+        """
+        Customize instance.
+        """
+
         # super and objectName
         # ------------------------------------------------------------------
         # parent_class

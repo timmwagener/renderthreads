@@ -146,8 +146,6 @@ class RenderThreads(form_class, base_class):
     sgnl_command_set_timeout = QtCore.Signal(int)
     sgnl_command_set_display_shell = QtCore.Signal(int)
     sgnl_command_set_log_exitcode_errors_only = QtCore.Signal(int)
-    
-    
 
     # Create and initialize
     # ------------------------------------------------------------------
@@ -186,17 +184,17 @@ class RenderThreads(form_class, base_class):
         # ------------------------------------------------------------------
         # dock_it
         self.dock_it = dock_it
-        
+
         # dev
         self.dev = dev
-        
+
         # thread_manager
         self.thread_manager = renderthreads_threads.ThreadManager()
 
         # Init procedure
         # ------------------------------------------------------------------
         # setup_threads
-        self.thread_manager.setup_threads(thread_interval = INITIAL_THREAD_INTERVAL)
+        self.thread_manager.setup_threads(thread_interval=INITIAL_THREAD_INTERVAL)
 
         # setupUi
         self.setupUi(self)
@@ -235,17 +233,17 @@ class RenderThreads(form_class, base_class):
         first argument of pyside context menu signal.
         """
 
-        #nodes_view
+        # nodes_view
         self.nodes_view.customContextMenuRequested.connect(self.display_nodes_context_menu)
 
     def display_nodes_context_menu(self, pos):
         """
         Create and display nodes model context menu.
         """
-        
-        #context_menu
+
+        # context_menu
         context_menu = renderthreads_model_context_menu.NodesContextMenu(dev=self.is_dev(),
-                                                                            parent = self)
+                                                                            parent=self)
         context_menu.set_view_and_model(self.nodes_view)
         context_menu.set_main_widget(self)
         context_menu.popup(self.nodes_view.mapToGlobal(pos))
@@ -315,8 +313,6 @@ class RenderThreads(form_class, base_class):
         # log
         self.logger.debug('\n\n-----------------------------\nFinished test methods.')
 
-    
-
     # Events
     # ------------------------------------------------------------------
     def stop_all_threads_and_timer(self):
@@ -324,7 +320,7 @@ class RenderThreads(form_class, base_class):
         Try to stop all threads and timers that RenderThreads started.
         This method is ment to be used in a closeEvent.
         """
-        
+
         try:
             # thread_manager threads
             self.thread_manager.stop_threads()
@@ -333,7 +329,7 @@ class RenderThreads(form_class, base_class):
             renderthreads_services_setup.stop_services(self)
 
         except:
-            #log
+            # log
             self.logger.debug('Error stopping threads for queue.')
 
     def closeEvent(self, event):
@@ -359,5 +355,5 @@ def run(dev=False, dock_it=True):
     """
 
     # renderthreads_instance
-    renderthreads_instance = RenderThreads(dev = dev, dock_it = dock_it)
+    renderthreads_instance = RenderThreads(dev=dev, dock_it=dock_it)
     renderthreads_instance.show()

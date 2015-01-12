@@ -64,16 +64,16 @@ def get_nodes(filter_type=None, selected=False):
     """
     Return list of all write nodes in DAG.
     """
-    
+
     # selected
     if (selected):
         # all nodes (also group content)
-        node_list = nuke.allNodes(recurseGroups = True)
+        node_list = nuke.allNodes(recurseGroups=True)
         # selected_nodes
         node_list = [node for node in node_list if (node.isSelected())]
     # all
     else:
-        node_list = nuke.allNodes(recurseGroups = True)
+        node_list = nuke.allNodes(recurseGroups=True)
 
     # filter_type
     if (filter_type):
@@ -163,8 +163,8 @@ def deselect_all():
     """
 
     # all nodes (also group content)
-    node_list = nuke.allNodes(recurseGroups = True)
-    
+    node_list = nuke.allNodes(recurseGroups=True)
+
     # deselect
     for node in node_list:
         try:
@@ -194,7 +194,7 @@ def select_node(nuke_node, exclusive=False):
     Select nuke_node from given nuke_node.
     """
 
-    #exclusive
+    # exclusive
     if (exclusive):
         nuke_node.selectOnly()
     # else
@@ -215,10 +215,10 @@ def get_memory_info(display=False):
 
     # memory_info
     memory_info = MemoryInfo(info, ram_total, ram_in_use, total_virtual_memory)
-    
+
     # display
     if (display):
-        
+
         # log
         logger.debug('{0}'.format(memory_info))
 
@@ -226,13 +226,13 @@ def get_memory_info(display=False):
 def byte_to_megabyte(byte_number):
     """
     Convert bytes to megabytes.
-    For example a byte_number of 
+    For example a byte_number of
     17135431680 returns 16341 megabyte.
     1048576 byte are 1 mbyte.
     """
 
     try:
-        return int(byte_number/1048576)
+        return int(byte_number / 1048576)
     except:
         return None
 

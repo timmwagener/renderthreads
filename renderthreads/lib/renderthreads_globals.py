@@ -66,9 +66,9 @@ for font_name, font_file_name in FONTS_LIST:
 
 # Colors
 # ------------------------------------------------------------------
-#darkening_factor
+# darkening_factor
 DARKENING_FACTOR = 120
-#brightening_factor
+# brightening_factor
 BRIGHTENING_FACTOR = 150
 
 BLACK = QtGui.QColor('#000000')

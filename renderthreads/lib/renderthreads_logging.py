@@ -68,7 +68,7 @@ def execute_with_logger(logger_class):
         """
 
         def wrapped_func(*args, **kwargs):
-            
+
             # current_logger_class
             current_logger_class = logging.getLoggerClass()
 
@@ -77,13 +77,13 @@ def execute_with_logger(logger_class):
 
             # execute func
             result = func(*args, **kwargs)
-            
+
             # reset logger
             logging.setLoggerClass(current_logger_class)
 
             # return
             return result
-        
+
         return wrapped_func
 
     return execute_with_logger_func_decorator
@@ -259,6 +259,7 @@ def get_formatter(verbose_level=logging.WARNING):
     elif (verbose_level >= logging.ERROR):
         return logging.Formatter('%(message)s')
 
+
 def get_handler(display=sys.stdout):
     """
     Return correctly formatted handler for display.
@@ -287,7 +288,7 @@ def get_logger(name,
 
     # handler
     handler = get_handler(display)
-    
+
     # logger
     logger = logging.getLogger(name)
     logger.setLevel(logging_level)
@@ -307,7 +308,7 @@ def set_logging_level(logging_level):
 
     # iterate
     for logger_name, logger in logging.Logger.manager.loggerDict.iteritems():
-        
+
         # check type (a direct type check fails here, for whatever reason)
         # Instead check against __name__ of type which succeeds
         if (type(logger).__name__ == RenderThreadsLogger.__name__):

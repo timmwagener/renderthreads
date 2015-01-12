@@ -9,44 +9,39 @@ Module that has only one method.
 """
 
 
-#Import
-#------------------------------------------------------------------
-#Import variable
+# Import
+# ------------------------------------------------------------------
+# Import variable
 do_reload = True
 
 
-#renderthreads
+# renderthreads
 
-#renderthreads_globals
+# renderthreads_globals
 from .. import renderthreads_globals
 if(do_reload):
     reload(renderthreads_globals)
 
 
-
-
-
-
-
-#Globals
-#------------------------------------------------------------------
-#Pathes
+# Globals
+# ------------------------------------------------------------------
+# Pathes
 TOOL_ROOT_PATH = renderthreads_globals.TOOL_ROOT_PATH
 MEDIA_PATH = renderthreads_globals.MEDIA_PATH
 ICONS_PATH = renderthreads_globals.ICONS_PATH
 UI_PATH = renderthreads_globals.UI_PATH
 
-#Fonts
+# Fonts
 FONT_SIZE_DEFAULT = renderthreads_globals.FONT_SIZE_DEFAULT
 FONT_SIZE_LARGE = renderthreads_globals.FONT_SIZE_LARGE
 FONT_SIZE_SMALL = renderthreads_globals.FONT_SIZE_SMALL
 
 FUTURA_LT_LIGHT = renderthreads_globals.FUTURA_LT_LIGHT
 
-#Header
+# Header
 HEADER_IMAGE = renderthreads_globals.HEADER_IMAGE
 
-#Colors
+# Colors
 BLACK = renderthreads_globals.BLACK
 WHITE = renderthreads_globals.WHITE
 
@@ -63,35 +58,33 @@ BLUE_DARK = renderthreads_globals.BLUE_DARK
 BLUE_BRIGHT = renderthreads_globals.BLUE_BRIGHT
 
 
+# get_stylesheet
+# ------------------------------------------------------------------
+# ss_dict
+ss_dict = {'header_image': HEADER_IMAGE,
+            'font_size_default': FONT_SIZE_DEFAULT,
+            'font_size_large': FONT_SIZE_LARGE,
+            'font_size_small': FONT_SIZE_SMALL,
+            'futura_lt_light': FUTURA_LT_LIGHT[0],
+            'black': BLACK.name(),
+            'white': WHITE.name(),
+            'grey': GREY.name(),
+            'grey_dark': GREY_DARK.name(),
+            'grey_bright': GREY_BRIGHT.name(),
+            'red': RED.name(),
+            'red_dark': RED_DARK.name(),
+            'red_bright': RED_BRIGHT.name(),
+            'blue': BLUE.name(),
+            'blue_dark': BLUE_DARK.name(),
+            'blue_bright': BLUE_BRIGHT.name()}
 
-
-#get_stylesheet
-#------------------------------------------------------------------
-
-#ss_dict
-ss_dict = {'header_image' : HEADER_IMAGE,
-            'font_size_default' : FONT_SIZE_DEFAULT,
-            'font_size_large' : FONT_SIZE_LARGE,
-            'font_size_small' : FONT_SIZE_SMALL,
-            'futura_lt_light' : FUTURA_LT_LIGHT[0],
-            'black' : BLACK.name(),
-            'white' : WHITE.name(),
-            'grey' : GREY.name(),
-            'grey_dark' : GREY_DARK.name(),
-            'grey_bright' : GREY_BRIGHT.name(),
-            'red' : RED.name(),
-            'red_dark' : RED_DARK.name(),
-            'red_bright' : RED_BRIGHT.name(),
-            'blue' : BLUE.name(),
-            'blue_dark' : BLUE_DARK.name(),
-            'blue_bright' : BLUE_BRIGHT.name()}
 
 def get_stylesheet():
     """
     Return stylesheet string, defining all stylesheets for RenderThreads.
     """
 
-    #str_stylesheet
+    # str_stylesheet
     str_stylesheet = " \
 \
 \
@@ -793,7 +786,7 @@ QCheckBox { background-color: %(white)s; \
 /* QCheckBox - disabled */\
 QCheckBox:disabled { background-color: %(red)s; \
 } \
-"%ss_dict
-	
-	#return
+" % ss_dict
+
+    # return
     return str_stylesheet

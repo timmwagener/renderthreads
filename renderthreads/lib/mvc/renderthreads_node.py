@@ -46,9 +46,8 @@ if(do_reload):
     reload(renderthreads_progressbar)
 
 
-# globals
+# Globals
 # ------------------------------------------------------------------
-
 INITIAL_PRIORITY = renderthreads_globals.INITIAL_PRIORITY
 
 
@@ -77,7 +76,6 @@ class RenderThreadsNode(QtCore.QObject):
     # ------------------------------------------------------------------
     sgnl_command_set_priority_for_identifier = QtCore.Signal(str, int)
 
-
     # Creation and Initialization
     # ------------------------------------------------------------------
     def __new__(cls, *args, **kwargs):
@@ -90,7 +88,6 @@ class RenderThreadsNode(QtCore.QObject):
 
         return node_instance
 
-    
     def __init__(self,
                     nuke_node=None,
                     start_frame=None,
@@ -132,7 +129,6 @@ class RenderThreadsNode(QtCore.QObject):
 
     # Getter and Setter
     # ------------------------------------------------------------------
-
     def get_nuke_node(self):
         """
         Return self._nuke_node
@@ -178,7 +174,7 @@ class RenderThreadsNode(QtCore.QObject):
         """
         Set self._end_frame
         """
-        
+
         self._end_frame = value
 
     end_frame = property(get_end_frame, set_end_frame)
@@ -290,7 +286,7 @@ class RenderThreadsNode(QtCore.QObject):
 
         # frame_list
         frame_list = [self._start_frame + index for
-                        index in 
+                        index in
                         range(frame_range + 1)]
 
         # return
@@ -338,17 +334,19 @@ class RenderThreadsNode(QtCore.QObject):
 
         self.priority = value
 
-
     # Operator overrides
     # ------------------------------------------------------------------
     def __eq__(self, other):
         """=="""
         return self.get_nuke_node_full_name() == other.get_nuke_node_full_name()
+
     def __ne__(self, other):
         """!="""
         return self.get_nuke_node_full_name() != other.get_nuke_node_full_name()
+
     def __hash__(self):
         return hash(self.get_nuke_node_full_name())
+
     def __len__(self):
         """
         Return number of properties.
@@ -359,7 +357,7 @@ class RenderThreadsNode(QtCore.QObject):
         [4]priority
         """
         return self.container_protocol_index_size
-    
+
     def __getitem__(self, key):
         """
         Return value accessed by one of the
@@ -372,29 +370,27 @@ class RenderThreadsNode(QtCore.QObject):
 
         # KeyError
         if (key < 0 and
-            key > self.container_protocol_index_size - 1):
+                key > self.container_protocol_index_size - 1):
             raise KeyError
 
         # 0
-        if (key == 0): 
+        if (key == 0):
             return self.get_nuke_node()
         # 1
-        elif (key == 1): 
+        elif (key == 1):
             return self.get_start_frame()
         # 2
-        elif (key == 2): 
+        elif (key == 2):
             return self.get_end_frame()
         # 3
-        elif (key == 3): 
+        elif (key == 3):
             return self.get_progressbar_value()
         # 4
-        elif (key == 4): 
+        elif (key == 4):
             return self.get_priority()
-
 
     # Misc
     # ------------------------------------------------------------------
-
     def create_progressbar(self):
         """
         Create instance progressbar.
@@ -408,17 +404,17 @@ class RenderThreadsNode(QtCore.QObject):
 
         # return
         return progressbar
-        
-    
+
     def nuke_node_exists(self):
         """
         Return True or False whether or not
         nuke node exists.
         """
-        
+
         try:
             full_name = self.get_nuke_node_full_name()
             return nuke.exists(full_name)
+
         except:
             return False
 
@@ -446,7 +442,6 @@ class RenderThreadsNodeWrite(RenderThreadsNode):
 
         return node_instance
 
-    
     def __init__(self,
                     nuke_node=None,
                     start_frame=None,
@@ -459,9 +454,9 @@ class RenderThreadsNodeWrite(RenderThreadsNode):
         # ------------------------------------------------------------------
         # parent_class
         self.parent_class = super(RenderThreadsNodeWrite, self)
-        self.parent_class.__init__(nuke_node = nuke_node,
-                                    start_frame = start_frame,
-                                    end_frame = end_frame)
+        self.parent_class.__init__(nuke_node=nuke_node,
+                                    start_frame=start_frame,
+                                    end_frame=end_frame)
 
         self.setObjectName(self.__class__.__name__)
 

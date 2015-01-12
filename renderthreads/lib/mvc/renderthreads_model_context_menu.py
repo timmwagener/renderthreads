@@ -25,15 +25,15 @@ from PySide import QtGui
 from PySide import QtCore
 
 
-#  Import variable
+# Import variable
 do_reload = True
 
 
-#  renderthreads
+# renderthreads
 
-#  lib
+# lib
 
-#  renderthreads_globals
+# renderthreads_globals
 from .. import renderthreads_globals
 if(do_reload):
     reload(renderthreads_globals)
@@ -74,7 +74,6 @@ class NodesContextMenu(QtGui.QMenu):
     that manages the renderthread nodes.
     """
 
-    
     def __new__(cls, *args, **kwargs):
         """
         NodesContextMenu instance factory.
@@ -85,17 +84,15 @@ class NodesContextMenu(QtGui.QMenu):
 
         return nodes_context_menu_instance
 
-    
     def __init__(self,
                 dev=True,
-                parent = None):
+                parent=None):
         """
         Customize instance.
         """
 
         # super and objectName
         # ------------------------------------------------------------------
-        
         # parent_class
         self.parent_class = super(NodesContextMenu, self)
         self.parent_class.__init__(parent=parent)
@@ -105,10 +102,9 @@ class NodesContextMenu(QtGui.QMenu):
 
         # instance variables
         # ------------------------------------------------------------------
-
         # dev
         self.dev = dev
-        
+
         # logger
         self.logger = renderthreads_logging.get_logger(self.__class__.__name__)
 
@@ -117,10 +113,9 @@ class NodesContextMenu(QtGui.QMenu):
 
         # wdgt_main
         self.wdgt_main = None
-        
+
         # Init procedure
         # ------------------------------------------------------------------
-        
         # setup_ui
         self.setup_ui()
 
@@ -135,7 +130,6 @@ class NodesContextMenu(QtGui.QMenu):
 
     # Setup
     # ------------------------------------------------------------------
-    
     def setup_ui(self):
         """
         Setup menu ui.
@@ -155,7 +149,7 @@ class NodesContextMenu(QtGui.QMenu):
         self.addSeparator()
 
         # mnu_render
-        self.mnu_render = QtGui.QMenu('Render', parent = self)
+        self.mnu_render = QtGui.QMenu('Render', parent=self)
         self.mnu_render.setObjectName(self.__class__.__name__ + '_' + 'mnu_render')
         self.addMenu(self.mnu_render)
 
@@ -186,7 +180,7 @@ class NodesContextMenu(QtGui.QMenu):
         self.addSeparator()
 
         # mnu_remove
-        self.mnu_remove = QtGui.QMenu('Remove', parent = self)
+        self.mnu_remove = QtGui.QMenu('Remove', parent=self)
         self.mnu_remove.setObjectName(self.__class__.__name__ + '_' + 'mnu_remove')
         self.addMenu(self.mnu_remove)
 
@@ -204,7 +198,7 @@ class NodesContextMenu(QtGui.QMenu):
         self.addSeparator()
 
         # mnu_select
-        self.mnu_select = QtGui.QMenu('Select', parent = self)
+        self.mnu_select = QtGui.QMenu('Select', parent=self)
         self.mnu_select.setObjectName(self.__class__.__name__ + '_' + 'mnu_select')
         self.addMenu(self.mnu_select)
 
@@ -233,10 +227,9 @@ class NodesContextMenu(QtGui.QMenu):
             self.addSeparator()
 
             # mnu_dev
-            self.mnu_dev = QtGui.QMenu('Dev', parent = self)
+            self.mnu_dev = QtGui.QMenu('Dev', parent=self)
             self.mnu_dev.setObjectName(self.__class__.__name__ + '_' + 'mnu_dev')
             self.addMenu(self.mnu_dev)
-
 
     # Connect
     # ------------------------------------------------------------------
@@ -272,7 +265,7 @@ class NodesContextMenu(QtGui.QMenu):
         self.acn_disable_render_selected.triggered.connect(functools.partial(self.disable_render_selected))
         # acn_disable_render_all
         self.acn_disable_render_all.triggered.connect(functools.partial(self.disable_render_all))
-        
+
     # Style
     # ------------------------------------------------------------------
 
@@ -291,7 +284,6 @@ class NodesContextMenu(QtGui.QMenu):
         # set_margins_and_spacing_for_child_layouts
         renderthreads_gui_helper.set_margins_and_spacing_for_child_layouts(self)
 
-    
     # Getter & Setter
     # ------------------------------------------------------------------
 
@@ -369,11 +361,11 @@ class NodesContextMenu(QtGui.QMenu):
 
                 # index invalid
                 if not(index.isValid()):
-                    
+
                     # log
                     self.logger.debug('Index {0} not valid. Continuing.'.format(index))
                     continue
-                
+
                 # row
                 row = index.row()
 
@@ -386,7 +378,7 @@ class NodesContextMenu(QtGui.QMenu):
                 # check duplicates
                 if (id(current_node) in [id(node) for node in node_list]):
                     continue
-                
+
                 # append
                 node_list.append(current_node)  # column is always zero
 
@@ -394,7 +386,6 @@ class NodesContextMenu(QtGui.QMenu):
             pass
 
         return node_list
-
 
     def get_renderthreads_node_to_command_object_list_from_nodes(self, renderthreads_node_list):
         """
@@ -450,7 +441,6 @@ class NodesContextMenu(QtGui.QMenu):
         # return
         return renderthreads_node_to_command_object_list
 
-
     def connect_command_object_list(self, renderthreads_node_to_command_object_list):
         """
         Connect the given RenderCommand objects
@@ -482,7 +472,6 @@ class NodesContextMenu(QtGui.QMenu):
             # sgnl_log_exitcode
             command_object.sgnl_log.connect(self.wdgt_main.log)
 
-
     def add_command_object_list_to_queue(self, renderthreads_node_to_command_object_list):
         """
         Add the given RenderCommand objects
@@ -499,10 +488,8 @@ class NodesContextMenu(QtGui.QMenu):
             # add
             self.wdgt_main.thread_manager.add_to_queue(command_object)
 
-
     # Slots
     # ------------------------------------------------------------------
-
     @QtCore.Slot()
     def add_selected(self):
         """
@@ -599,7 +586,6 @@ class NodesContextMenu(QtGui.QMenu):
             # log
             self.logger.debug('Error selecting selected nodes.')
 
-    
     @QtCore.Slot()
     def select_all(self):
         """
@@ -622,7 +608,6 @@ class NodesContextMenu(QtGui.QMenu):
             # log
             self.logger.debug('Error selecting all nodes.')
 
-    
     @QtCore.Slot()
     def deselect_all(self):
         """
@@ -636,8 +621,6 @@ class NodesContextMenu(QtGui.QMenu):
             # log
             self.logger.debug('Error deselecting all nodes.')
 
-
-    
     @QtCore.Slot()
     def render_selected(self):
         """
@@ -667,7 +650,6 @@ class NodesContextMenu(QtGui.QMenu):
         # add_command_object_list_to_queue
         self.add_command_object_list_to_queue(renderthreads_node_to_command_object_list)
 
-
     @QtCore.Slot()
     def render_all(self):
         """
@@ -693,7 +675,6 @@ class NodesContextMenu(QtGui.QMenu):
 
         # add_command_object_list_to_queue
         self.add_command_object_list_to_queue(renderthreads_node_to_command_object_list)
-
 
     @QtCore.Slot()
     def disable_render_selected(self):
@@ -723,7 +704,6 @@ class NodesContextMenu(QtGui.QMenu):
             # emit
             self.wdgt_main.sgnl_command_set_enabled_for_identifier.emit(identifier, False)
 
-
     @QtCore.Slot()
     def disable_render_all(self):
         """
@@ -738,11 +718,6 @@ class NodesContextMenu(QtGui.QMenu):
         # emit
         self.wdgt_main.sgnl_command_set_enabled.emit(False)
 
-    
-
-            
-
-    
     # Misc
     # ------------------------------------------------------------------
     def dummy_method(self, msg='dummy'):

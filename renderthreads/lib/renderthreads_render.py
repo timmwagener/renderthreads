@@ -11,7 +11,7 @@ line rendering in Nuke.
 
 # Import
 # ------------------------------------------------------------------
-#python
+# python
 import sys
 import os
 import multiprocessing
@@ -64,7 +64,6 @@ class RenderCommand(QtCore.QObject):
 
         return render_command_instance
 
-    
     def __init__(self,
                     command,
                     timeout,
@@ -108,12 +107,11 @@ class RenderCommand(QtCore.QObject):
         self.process = None
         # enabled
         self.enabled = True
-        
+
         # logger_name
         self.logger_name = '{0}-{1}-{2}'.format(self.__class__.__name__, identifier, frame)
         # logger
         self.logger = renderthreads_logging.get_logger(self.logger_name)
-
 
     # Operator overrides
     # ------------------------------------------------------------------
@@ -129,12 +127,10 @@ class RenderCommand(QtCore.QObject):
         # priority equal
         if (self.priority == other.priority):
             return cmp(self.identifier, other.identifier)
-        
+
         # else
         else:
             return cmp(self.priority, other.priority)
-    
-    
 
     # Methods
     # ------------------------------------------------------------------
@@ -160,8 +156,7 @@ class RenderCommand(QtCore.QObject):
         import subprocess
         import logging
         import threading
-        
-        
+
         def target():
             """
             Target method to do the actual work.
@@ -180,21 +175,20 @@ class RenderCommand(QtCore.QObject):
 
             # process
             self.process = subprocess.Popen('{0}'.format(self.command),
-                                            env = env_dict,
-                                            creationflags = creation_flags)
+                                            env=env_dict,
+                                            creationflags=creation_flags)
 
             # communicate
             self.process.communicate()
 
-            
         # thread
-        thread = threading.Thread(target = target)
+        thread = threading.Thread(target=target)
         # start
         thread.start()
         # wait for timeout
         timeout_in_seconds = self.timeout * 60
         thread.join(timeout_in_seconds)
-        
+
         # on timeout
         if(thread.is_alive()):
 
@@ -203,11 +197,11 @@ class RenderCommand(QtCore.QObject):
 
             # terminate process
             self.process.terminate()
-            
-            #finish thread
+
+            # finish thread
             thread.join()
 
-        #exitcode
+        # exitcode
         exitcode = self.process.returncode
 
         # notify gui
@@ -282,11 +276,10 @@ The default uses a render license.({0})'.format(exitcode)
             # log_message_suffix
             log_message_suffix = 'Unknown exitcode.({0})'.format(exitcode)
 
-        
         # log_message
         log_message = log_message_prefix + ' ' + log_message_suffix
-        
-        #return
+
+        # return
         return log_message
 
     def is_error(self, exitcode):
@@ -301,7 +294,6 @@ The default uses a render license.({0})'.format(exitcode)
             return False
 
         return True
-
 
     # Getter & Setter
     # ------------------------------------------------------------------

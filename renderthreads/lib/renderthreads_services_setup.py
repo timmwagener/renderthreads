@@ -75,12 +75,9 @@ def setup_services(wdgt):
     # connect_services
     connect_services(wdgt)
 
-    
-
 
 # Create
 # ------------------------------------------------------------------
-
 def create_services(wdgt):
     """
     Create services for RenderThreads instance.
@@ -95,7 +92,8 @@ def create_services(wdgt):
     # create_script_check
     create_script_check(wdgt)
 
-def create_mvc_validity_check(wdgt, interval = 1000):
+
+def create_mvc_validity_check(wdgt, interval=1000):
     """
     Setup check to remove invalid entries from
     model. invalid entries are renderthread nodes
@@ -104,33 +102,35 @@ def create_mvc_validity_check(wdgt, interval = 1000):
     whose get_nuke_node delivers None)
     """
 
-    #tmr_validity_check
+    # tmr_validity_check
     wdgt.tmr_validity_check = QtCore.QTimer(wdgt)
     wdgt.tmr_validity_check.start(interval)
 
-def create_memory_check(wdgt, interval = 2000):
+
+def create_memory_check(wdgt, interval=2000):
     """
     Create a timer that delivers info about memory
     constantly.
     """
 
-    #tmr_memory_check
+    # tmr_memory_check
     wdgt.tmr_memory_check = QtCore.QTimer(wdgt)
     wdgt.tmr_memory_check.start(interval)
 
-def create_script_check(wdgt, interval = 1000):
+
+def create_script_check(wdgt, interval=1000):
     """
     Create a timer that delivers the name of
     the current nuke script.
     """
 
-    #tmr_script_check
+    # tmr_script_check
     wdgt.tmr_script_check = QtCore.QTimer(wdgt)
     wdgt.tmr_script_check.start(interval)
 
+
 # Connect
 # ------------------------------------------------------------------
-
 def connect_services(wdgt):
     """
     Connect services.
@@ -154,6 +154,7 @@ def connect_mvc_validity_check(wdgt):
     # tmr_validity_check
     wdgt.tmr_validity_check.timeout.connect(functools.partial(wdgt.nodes_model.update_invalid))
 
+
 def connect_memory_check(wdgt):
     """
     Connect memory check service.
@@ -161,6 +162,7 @@ def connect_memory_check(wdgt):
 
     # tmr_memory_check
     wdgt.tmr_memory_check.timeout.connect(functools.partial(renderthreads_nuke.get_memory_info))
+
 
 def connect_script_check(wdgt):
     """
@@ -170,9 +172,9 @@ def connect_script_check(wdgt):
     # tmr_script_check
     wdgt.tmr_script_check.timeout.connect(functools.partial(renderthreads_gui_setup.update_script_path, wdgt))
 
+
 # Close
 # ------------------------------------------------------------------
-
 def stop_services(wdgt):
     """
     Stop all services created in this module.

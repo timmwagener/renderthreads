@@ -43,8 +43,8 @@ if(do_reload):
 # ------------------------------------------------------------------
 
 
-#  SignalRemapper
-#  ------------------------------------------------------------------
+# SignalRemapper
+# ------------------------------------------------------------------
 class SignalRemapper(QtCore.QObject):
     """
     Simple class that remaps signals from
@@ -60,7 +60,6 @@ class SignalRemapper(QtCore.QObject):
     # ------------------------------------------------------------------
     sgnl_set_logging = QtCore.Signal(int)
 
-    
     # Creation and Initialization
     # ------------------------------------------------------------------
     def __new__(cls, *args, **kwargs):
@@ -73,7 +72,6 @@ class SignalRemapper(QtCore.QObject):
 
         return signal_remapper_instance
 
-    
     def __init__(self):
         """
         Customize instance.
@@ -89,10 +87,8 @@ class SignalRemapper(QtCore.QObject):
 
         # instance variables
         # ------------------------------------------------------------------
-
         # logger
         self.logger = renderthreads_logging.get_logger(self.__class__.__name__)
-
 
     # Slots
     # ------------------------------------------------------------------

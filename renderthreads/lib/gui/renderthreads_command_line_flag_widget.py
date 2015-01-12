@@ -63,7 +63,6 @@ class CommandLineFlag(QtGui.QFrame):
 
     # Signals
     # ------------------------------------------------------------------
-
     state_changed = QtCore.Signal()
     parameter_changed = QtCore.Signal()
 
@@ -92,7 +91,6 @@ class CommandLineFlag(QtGui.QFrame):
 
         # super and objectName
         # ------------------------------------------------------------------
-        
         # parent_class
         self.parent_class = super(CommandLineFlag, self)
         # super class constructor
@@ -101,10 +99,8 @@ class CommandLineFlag(QtGui.QFrame):
         # objectName
         self.setObjectName(self.__class__.__name__)
 
-
         # instance variables
         # ------------------------------------------------------------------
-        
         # flag
         self.set_flag(flag)
         # tooltip
@@ -120,12 +116,10 @@ class CommandLineFlag(QtGui.QFrame):
         self.logger = renderthreads_logging.get_logger(self.__class__.__name__)
 
         # container_protocol_index_size
-        self.container_protocol_index_size = 5 
-
+        self.container_protocol_index_size = 5
 
         # Init procedure
         # ------------------------------------------------------------------
-        
         # setup_ui
         self.setup_ui()
 
@@ -137,7 +131,6 @@ class CommandLineFlag(QtGui.QFrame):
 
     # UI setup methods
     # ------------------------------------------------------------------
-    
     def setup_ui(self):
         """
         Setup additional UI.
@@ -147,7 +140,7 @@ class CommandLineFlag(QtGui.QFrame):
         self.lyt_command_line_flag = QtGui.QHBoxLayout(self)
 
         # chkbx_state
-        self.chkbx_state = QtGui.QCheckBox(text = '')
+        self.chkbx_state = QtGui.QCheckBox(text='')
         self.chkbx_state.setObjectName(self.__class__.__name__ + type(self.chkbx_state).__name__)
         self.chkbx_state.setChecked(self.get_state())
         self.chkbx_state.setEnabled(self.checkable)
@@ -160,7 +153,7 @@ class CommandLineFlag(QtGui.QFrame):
         self.lyt_command_line_flag.addWidget(self.wdgt_spacer_chkbx_and_flag)
 
         # lbl_flag
-        self.lbl_flag = QtGui.QLabel(text = self._flag)
+        self.lbl_flag = QtGui.QLabel(text=self._flag)
         self.lbl_flag.setObjectName(self.__class__.__name__ + type(self.lbl_flag).__name__)
         self.lbl_flag.setEnabled(self.get_state())
         self.lyt_command_line_flag.addWidget(self.lbl_flag)
@@ -183,15 +176,14 @@ class CommandLineFlag(QtGui.QFrame):
             # addStretch
             self.lyt_command_line_flag.addStretch()
 
-
     def connect_ui(self):
         """
         Connect UI widgets with slots or functions.
         """
-        
+
         # chkbx_state
         self.chkbx_state.toggled.connect(self.set_state)
-        
+
         # self.state_changed.
         self.state_changed.connect(self.update_ui)
 
@@ -227,13 +219,12 @@ class CommandLineFlag(QtGui.QFrame):
 
         # valueChanged
         if (type(self.wdgt_parameter) is QtGui.QSpinBox or
-            type(self.wdgt_parameter) is QtGui.QDoubleSpinBox or
-            type(self.wdgt_parameter) is QtGui.QDial or
-            type(self.wdgt_parameter) is QtGui.QSlider):
+                type(self.wdgt_parameter) is QtGui.QDoubleSpinBox or
+                type(self.wdgt_parameter) is QtGui.QDial or
+                type(self.wdgt_parameter) is QtGui.QSlider):
 
             # connect
             self.wdgt_parameter.valueChanged.connect(self.parameter_changed)
-
 
     def style_ui(self):
         """
@@ -248,7 +239,6 @@ class CommandLineFlag(QtGui.QFrame):
 
     # Properties
     # ------------------------------------------------------------------
-
     def get_state(self):
         """
         Return self_state.
@@ -256,7 +246,6 @@ class CommandLineFlag(QtGui.QFrame):
 
         return self._state
 
-    
     def set_state(self, value):
         """
         Set self._state and emit
@@ -288,7 +277,6 @@ An update of this Descriptor (set) causes an update of the ui.")
 
         return self._flag
 
-
     def get_flag(self):
         """
         Return self._flag and format it together.
@@ -313,7 +301,6 @@ An update of this Descriptor (set) causes an update of the ui.")
 
         return flag_string
 
-    
     def set_flag(self, value):
         """
         Set self._flag.
@@ -331,10 +318,9 @@ The setter just sets self._flag.")
     flag readily formatted for command line use.
     The setter just sets self._flag.
     """
-    
+
     # Getter and Setter
     # ------------------------------------------------------------------
-    
     def get_parameter(self):
         """
         Return parameter value from wdgt_parameter,
@@ -361,13 +347,12 @@ The setter just sets self._flag.")
 
         # value()
         if (type(self.wdgt_parameter) is QtGui.QSpinBox or
-            type(self.wdgt_parameter) is QtGui.QDoubleSpinBox or
-            type(self.wdgt_parameter) is QtGui.QDial or
-            type(self.wdgt_parameter) is QtGui.QSlider):
+                type(self.wdgt_parameter) is QtGui.QDoubleSpinBox or
+                type(self.wdgt_parameter) is QtGui.QDial or
+                type(self.wdgt_parameter) is QtGui.QSlider):
 
             # get_parameter_with_value
             return self.get_parameter_with_value()
-
 
     def get_parameter_as_string(self):
         """
@@ -385,7 +370,6 @@ The setter just sets self._flag.")
         # return
         return str(parameter_value)
 
-
     def get_parameter_with_text(self):
         """
         Return value for wdgt_parameter if
@@ -393,7 +377,6 @@ The setter just sets self._flag.")
         """
 
         return self.wdgt_parameter.text()
-
 
     def get_parameter_with_currentText(self):
         """
@@ -403,7 +386,6 @@ The setter just sets self._flag.")
 
         return self.wdgt_parameter.currentText()
 
-
     def get_parameter_with_value(self):
         """
         Return value for wdgt_parameter if
@@ -411,7 +393,6 @@ The setter just sets self._flag.")
         """
 
         return self.wdgt_parameter.value()
-
 
     def set_tooltip(self):
         """
@@ -425,30 +406,35 @@ The setter just sets self._flag.")
         # set tooltip
         self.setToolTip(tooltip)
 
-
     # Operator overrides
     # ------------------------------------------------------------------
-    
     def __eq__(self, other):
         """=="""
         return self.get_flag_without_parameter() == other.get_flag_without_parameter()
+
     def __ne__(self, other):
         """!="""
         return self.get_flag_without_parameter() != other.get_flag_without_parameter()
+
     def __gt__(self, other):
         """>"""
         return self.get_flag_without_parameter() > other.get_flag_without_parameter()
+
     def __lt__(self, other):
         """<"""
         return self.get_flag_without_parameter() < other.get_flag_without_parameter()
+
     def __ge__(self, other):
         """>="""
         return self.get_flag_without_parameter() >= other.get_flag_without_parameter()
+
     def __le__(self, other):
         """<="""
         return self.get_flag_without_parameter() <= other.get_flag_without_parameter()
+
     def __hash__(self):
         return hash(self.get_flag_without_parameter())
+
     def __len__(self):
         """
         Return number of properties.
@@ -459,7 +445,7 @@ The setter just sets self._flag.")
         [4]parameter
         """
         return self.container_protocol_index_size
-    
+
     def __getitem__(self, key):
         """
         Return values when accessed by index operator.
@@ -472,38 +458,35 @@ The setter just sets self._flag.")
 
         # KeyError
         if (key < 0 and
-            key > self.container_protocol_index_size - 1):
+                key > self.container_protocol_index_size - 1):
             raise KeyError
 
         # 0
-        if (key == 0): 
+        if (key == 0):
             return self.get_flag()
         # 1
-        elif (key == 1): 
+        elif (key == 1):
             return self.get_flag_without_parameter()
         # 2
-        elif (key == 2): 
+        elif (key == 2):
             return self.get_state()
 
         # 3
-        elif (key == 3): 
+        elif (key == 3):
             return self.wdgt_parameter
 
         # 4
-        elif (key == 4): 
+        elif (key == 4):
             return self.get_parameter()
-
-
 
     # Slots
     # ------------------------------------------------------------------
-
     def update_ui(self):
         """
         Set enabled/disabled on widgets depending
         on state
         """
-        
+
         # state
         state = self.get_state()
         # log
@@ -519,7 +502,6 @@ The setter just sets self._flag.")
             self.wdgt_parameter.setEnabled(state)
             # log
             self.logger.debug('wdgt_parameter {0}'.format(self.wdgt_parameter.isEnabled()))
-
 
     def force_parameter_enabled(self, status):
         """
@@ -538,10 +520,8 @@ The setter just sets self._flag.")
         if (self.wdgt_parameter):
             self.wdgt_parameter.setEnabled(status)
 
-    
     # Events
     # ------------------------------------------------------------------
-    
     def event(self, event):
         """
         Override event to catch ToolTip event.
@@ -552,7 +532,7 @@ The setter just sets self._flag.")
 
             # set_tooltip
             self.set_tooltip()
-            
+
             # return
             return self.parent_class.event(event)
 
