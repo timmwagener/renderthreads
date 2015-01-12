@@ -1,0 +1,7 @@
+recursive-include renderthreads/media/ui *
+recursive-include renderthreads/media/fonts *
+recursive-include renderthreads/media/icons *
+recursive-include renderthreads/lib/third_party/pysideuic *
+recursive-include renderthreads/lib/third_party/pysideuic/Compiler *
+recursive-include renderthreads/lib/third_party/pysideuic/port_v2 *
+recursive-include renderthreads/lib/third_party/pysideuic/widget-plugins *
