@@ -40,7 +40,7 @@ Features
 
 -----------------------
 
-[**Documentation**](https://www.python.org/) [Quickstart](https://www.python.org/) [Download](https://www.python.org/) [Vimeo](https://www.python.org/) [Author](https://www.python.org/)
+[**Documentation**](http://renderthreads.readthedocs.org/) [**Quickstart**](http://renderthreads.readthedocs.org/) [**Download**](https://pypi.python.org/pypi/renderthreads/) [**Vimeo**](http://vimeo.com/timmwagener) [**Author**](http://www.timmwagener.com/)
 
 -----------------------
 
