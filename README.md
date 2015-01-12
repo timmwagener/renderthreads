@@ -11,9 +11,11 @@ renderthreads
 </div>
 -----------------------
 [![Documentation Status](https://readthedocs.org/projects/renderthreads/badge/?version=latest)](https://readthedocs.org/projects/renderthreads/?badge=latest)
-.. image:: https://pypip.in/download/renderthreads/badge.svg
-    :target: https://pypi.python.org/pypi//renderthreads/
-    :alt: Downloads
+[![Downloads](https://pypip.in/download/renderthreads/badge.svg)](https://pypi.python.org/pypi/renderthreads/)
+[![Latest Version](https://pypip.in/version/renderthreads/badge.svg)](https://pypi.python.org/pypi/renderthreads/)
+[![Development Status](https://pypip.in/status/renderthreads/badge.svg)](https://pypi.python.org/pypi/renderthreads/)
+[![Download format](https://pypip.in/format/renderthreads/badge.svg)](https://pypi.python.org/pypi/renderthreads/)
+[![License](https://pypip.in/license/renderthreads/badge.svg)](https://pypi.python.org/pypi/renderthreads/)
 -----------------------
 
 
