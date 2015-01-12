@@ -41,9 +41,12 @@ FUTURA_LT_LIGHT = renderthreads_globals.FUTURA_LT_LIGHT
 # Header
 HEADER_IMAGE = renderthreads_globals.HEADER_IMAGE
 
+TRANSPARENCY = renderthreads_globals.TRANSPARENCY
+
 # Colors
 BLACK = renderthreads_globals.BLACK
 WHITE = renderthreads_globals.WHITE
+WHITE_DARK = renderthreads_globals.WHITE_DARK
 
 GREY = renderthreads_globals.GREY
 GREY_DARK = renderthreads_globals.GREY_DARK
@@ -68,6 +71,7 @@ ss_dict = {'header_image': HEADER_IMAGE,
             'futura_lt_light': FUTURA_LT_LIGHT[0],
             'black': BLACK.name(),
             'white': WHITE.name(),
+            'white_dark': WHITE_DARK.name(),
             'grey': GREY.name(),
             'grey_dark': GREY_DARK.name(),
             'grey_bright': GREY_BRIGHT.name(),
@@ -568,7 +572,7 @@ QTableCornerButton::section { background-color: %(white)s; \
 \
 /* RenderThreadsView - nodes_view */\
 RenderThreadsView#nodes_view { background-color: %(white)s; \
-                                alternate-background-color: %(grey_bright)s; \
+                                alternate-background-color: %(white_dark)s; \
                                 selection-background-color: %(red)s; \
                                 color: %(black)s;\
                                 border-left: none; \

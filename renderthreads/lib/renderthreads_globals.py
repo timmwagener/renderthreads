@@ -70,9 +70,13 @@ for font_name, font_file_name in FONTS_LIST:
 DARKENING_FACTOR = 120
 # brightening_factor
 BRIGHTENING_FACTOR = 150
+# transparency
+TRANSPARENCY = 100
 
 BLACK = QtGui.QColor('#000000')
 WHITE = QtGui.QColor('#f5f5f5')
+WHITE_DARK = WHITE.darker(DARKENING_FACTOR)
+WHITE_BRIGHT = WHITE.lighter(DARKENING_FACTOR)
 GREY = QtGui.QColor('#484f57')
 GREY_DARK = GREY.darker(DARKENING_FACTOR)
 GREY_BRIGHT = GREY.lighter(DARKENING_FACTOR)
