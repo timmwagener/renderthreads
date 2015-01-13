@@ -119,7 +119,7 @@ INITIAL_PRIORITY = 50  # Range is from 1 - 100. PriorityQueue values are negated
 # Websites
 # ------------------------------------------------------------------
 WEBSITE_DOCS = r'http://renderthreads.readthedocs.org/'
-WEBSITE_DOCS_QUICK = r'http://renderthreads.readthedocs.org/'
+WEBSITE_DOCS_QUICK = r'http://renderthreads.readthedocs.org/quickstart.html'
 WEBSITE_PYPI = r'https://pypi.python.org/pypi/renderthreads/'
 WEBSITE_GITHUB = r'https://github.com/timmwagener/renderthreads'
 WEBSITE_GITHUB_ISSUES = r'https://github.com/timmwagener/renderthreads/issues'
