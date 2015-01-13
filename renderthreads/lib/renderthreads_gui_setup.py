@@ -618,7 +618,7 @@ that defaults to 0 if none given. Will override preferences when in interactive 
     # flg_i
     tooltip = 'With -x or -t use interactive, not render, license.'
     wdgt.flg_i = renderthreads_command_line_flag_widget.CommandLineFlag(flag='-i',
-                                                                        state=False,
+                                                                        state=True,
                                                                         tooltip=tooltip,
                                                                         checkable=True,
                                                                         parent=wdgt)

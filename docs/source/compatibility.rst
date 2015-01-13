@@ -19,7 +19,7 @@ Compatibility
 ------------------------------------------
 
 Here i will note environments (OS, Nuke versions) that **renderthreads** was tested in and is known to work with.....or not.
-If you encounter any issues running the tool with your version of Nuke or your operating system, `feel free to drop me a line <mailto:wagenertimm@gmail.com?Subject=[renderthreads]%20Compatibility%20issue>`_.
+If you encounter any issues running the tool with your version of Nuke or your operating system, `feel free to drop me a line <mailto:wagenertimm@gmail.com?Subject=[renderthreads]%20Compatibility%20issue>`_. Or file a bug report on the `github issue tracker <https://github.com/timmwagener/renderthreads/issues>`_.
 
 ------------------------------------------
 
