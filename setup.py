@@ -15,7 +15,7 @@ from setuptools import find_packages
 # Setup
 # ------------------------------------------------------------------
 setup(name='renderthreads',
-      version='0.2.6',
+      version='0.2.8',
       description='Package that enables easy command-line multithreaded rendering for Nuke.',
       url='https://github.com/timmwagener/renderthreads',
       author='Timm Wagener',
