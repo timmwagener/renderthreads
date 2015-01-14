@@ -256,7 +256,18 @@ def get_script_path():
 def save_script():
     """
     Save the current script under the
-    same name.
+    same name. Return True or False depending on
+    wether or not the operation was successful.
     """
 
-    nuke.scriptSave()
+    try:
+        
+        result = nuke.scriptSave()
+        return result
+    
+    except:
+
+        # log
+        logger.info('Error saving file.')
+        
+        return False

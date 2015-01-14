@@ -58,6 +58,11 @@ from .. import renderthreads_render
 if(do_reload):
     reload(renderthreads_render)
 
+#  renderthreads_gui_setup
+from .. import renderthreads_gui_setup
+if(do_reload):
+    reload(renderthreads_gui_setup)
+
 # lib.gui
 
 # renderthreads_gui_helper
@@ -630,8 +635,19 @@ class NodesContextMenu(QtGui.QMenu):
 
         # save
         if (self.wdgt_main.sldr_save_script.get_value()):
-            # save
-            renderthreads_nuke.save_script()
+            
+            # save_successful
+            save_successful = renderthreads_nuke.save_script()
+
+            # not successful
+            if not (save_successful):
+
+                # log
+                self.logger.debug('Script saving failed. Not rendering.')
+                return 
+
+            # set (new) script path in ui
+            renderthreads_gui_setup.update_script_path(self.wdgt_main)
             # log
             self.logger.debug('Script saved: {0}'.format(renderthreads_nuke.get_script_path()))
 
@@ -659,8 +675,19 @@ class NodesContextMenu(QtGui.QMenu):
 
         # save
         if (self.wdgt_main.sldr_save_script.get_value()):
-            # save
-            renderthreads_nuke.save_script()
+            
+            # save_successful
+            save_successful = renderthreads_nuke.save_script()
+
+            # not successful
+            if not (save_successful):
+
+                # log
+                self.logger.debug('Script saving failed. Not rendering.')
+                return 
+
+            # set (new) script path in ui
+            renderthreads_gui_setup.update_script_path(self.wdgt_main)
             # log
             self.logger.debug('Script saved: {0}'.format(renderthreads_nuke.get_script_path()))
 

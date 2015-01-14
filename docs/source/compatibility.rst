@@ -30,9 +30,11 @@ Operating systems
 
 * Windows7
 
-Nuke
-----
+Nuke versions
+-------------
 
 ------------------------------------------
 
-* 8.05
+* 9.x
+* 8.x
+* 7.x/below: **Fail** because renderthreads needs Python 2.7

@@ -24,7 +24,7 @@ Manual installation
 
 * Go to `PyPI <https://pypi.python.org/pypi/renderthreads/>`_ and download the package.
 * Then extract the zip and go into the folder renderthreads-x.x.x (for example renderthreads-0.2.3). In there you'll find a folder called **renderthreads**.
-* Take it and copy it into your Nuke **site-packages** or anywhere else on your Nuke Python path.
+* Take it and copy it into your Nuke **site-packages** (usually *NukeX.YvZ/lib/site-packages/*) or anywhere else on your Nuke Python path.
 
 pip
 ---
