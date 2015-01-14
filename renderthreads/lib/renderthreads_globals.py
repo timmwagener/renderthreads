@@ -25,7 +25,7 @@ VERSION = 0.1
 
 # Logging
 # ------------------------------------------------------------------
-INITIAL_LOGGING_LEVEL = logging.DEBUG
+INITIAL_LOGGING_LEVEL = logging.INFO
 
 
 # Pathes
@@ -124,7 +124,7 @@ WEBSITE_PYPI = r'https://pypi.python.org/pypi/renderthreads/'
 WEBSITE_GITHUB = r'https://github.com/timmwagener/renderthreads'
 WEBSITE_GITHUB_ISSUES = r'https://github.com/timmwagener/renderthreads/issues'
 WEBSITE_AUTHOR = r'http://www.timmwagener.com/'
-WEBSITE_VIMEO = r'http://vimeo.com/timmwagener'
+WEBSITE_VIMEO = r'https://vimeo.com/timmwagener/renderthreads'
 WEBSITE_LINKEDIN = r'https://www.linkedin.com/pub/timm-wagener/54/5a2/b55'
 
 
