@@ -271,6 +271,11 @@ class NodesContextMenu(QtGui.QMenu):
         # acn_disable_render_all
         self.acn_disable_render_all.triggered.connect(functools.partial(self.disable_render_all))
 
+        # dev
+        if (self.is_dev()):
+
+            pass
+
     # Style
     # ------------------------------------------------------------------
 
@@ -460,6 +465,11 @@ class NodesContextMenu(QtGui.QMenu):
             self.wdgt_main.sgnl_command_set_enabled.connect(command_object.set_enabled)
             # sgnl_command_set_enabled_for_identifier
             self.wdgt_main.sgnl_command_set_enabled_for_identifier.connect(command_object.set_enabled_for_identifier)
+            # sgnl_command_terminate_process
+            self.wdgt_main.sgnl_command_terminate_process.connect(command_object.terminate_process)
+            # sgnl_command_terminate_process_for_identifier
+            self.wdgt_main.sgnl_command_terminate_process_for_identifier.connect(command_object.terminate_process_for_identifier)
+
             # sgnl_command_set_timeout
             self.wdgt_main.sgnl_command_set_timeout.connect(command_object.set_timeout)
             # sgnl_command_set_display_shell
@@ -635,7 +645,7 @@ class NodesContextMenu(QtGui.QMenu):
 
         # save
         if (self.wdgt_main.sldr_save_script.get_value()):
-            
+
             # save_successful
             save_successful = renderthreads_nuke.save_script()
 
@@ -644,7 +654,7 @@ class NodesContextMenu(QtGui.QMenu):
 
                 # log
                 self.logger.debug('Script saving failed. Not rendering.')
-                return 
+                return
 
             # set (new) script path in ui
             renderthreads_gui_setup.update_script_path(self.wdgt_main)
@@ -675,7 +685,7 @@ class NodesContextMenu(QtGui.QMenu):
 
         # save
         if (self.wdgt_main.sldr_save_script.get_value()):
-            
+
             # save_successful
             save_successful = renderthreads_nuke.save_script()
 
@@ -684,7 +694,7 @@ class NodesContextMenu(QtGui.QMenu):
 
                 # log
                 self.logger.debug('Script saving failed. Not rendering.')
-                return 
+                return
 
             # set (new) script path in ui
             renderthreads_gui_setup.update_script_path(self.wdgt_main)
@@ -706,14 +716,15 @@ class NodesContextMenu(QtGui.QMenu):
     @QtCore.Slot()
     def disable_render_selected(self):
         """
-        Emit sgnl_command_set_enabled_for_identifier(identifier, False).
-        This method does not STOP! the commands or
-        delete them. Instead it sets their enabled
-        state to false which causes them to not
-        compute anything but remain the normal
-        get/task_done queue procedure.
-        The identifier is a string (in this case
-        the nuke node full name).
+        Emit sgnl_command_set_enabled_for_identifier(identifier, False)
+        and sgnl_command_terminate_process_for_identifier(identifier).
+        The identifier is the full node name. The signals first cause
+        all RenderCommand objects with a matching identifier to have
+        the enabled member set to false and then the process, if not
+        None, will be killed.The RenderCommand objects still
+        follow the get/task_done procedure of the queue
+        though, which means that total finishing of
+        all objects might take a while.
         """
 
         # selected_indices_list
@@ -730,20 +741,26 @@ class NodesContextMenu(QtGui.QMenu):
 
             # emit
             self.wdgt_main.sgnl_command_set_enabled_for_identifier.emit(identifier, False)
+            self.wdgt_main.sgnl_command_terminate_process_for_identifier.emit(identifier)
 
     @QtCore.Slot()
     def disable_render_all(self):
         """
-        Emit sgnl_command_set_enabled(False).
-        This method does not STOP! the commands or
-        delete them. Instead it sets their enabled
-        state to false which causes them to not
-        compute anything but remain the normal
-        get/task_done queue procedure.
+        Emit sgnl_command_set_enabled(False) and
+        sgnl_command_terminate_process. Those two
+        signals cause an immediate stop for all
+        RenderCommand objects. The currently rendering objects
+        are aborted and the ones that wait in the queue
+        are not executed anymore since they have been
+        set disabled. The RenderCommand objects still
+        follow the get/task_done procedure of the queue
+        though, which means that total finishing of
+        all objects might take a while.
         """
 
         # emit
         self.wdgt_main.sgnl_command_set_enabled.emit(False)
+        self.wdgt_main.sgnl_command_terminate_process.emit()
 
     # Misc
     # ------------------------------------------------------------------

@@ -295,6 +295,35 @@ The default uses a render license.({0})'.format(exitcode)
 
         return True
 
+    # Slots
+    # ------------------------------------------------------------------
+    @QtCore.Slot()
+    def terminate_process(self):
+        """
+        Terminate process if it exists.
+        """
+
+        # if exists
+        if (self.process):
+
+            try:
+                # terminate
+                self.process.terminate()
+            except:
+                pass
+
+    @QtCore.Slot(str)
+    def terminate_process_for_identifier(self, identifier):
+        """
+        Terminate process if it exists.
+        """
+
+        # check identifier
+        if (self.identifier == identifier):
+
+            # terminate_process
+            self.terminate_process()
+
     # Getter & Setter
     # ------------------------------------------------------------------
 

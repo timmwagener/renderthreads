@@ -146,6 +146,8 @@ class RenderThreads(form_class, base_class):
     sgnl_command_set_timeout = QtCore.Signal(int)
     sgnl_command_set_display_shell = QtCore.Signal(int)
     sgnl_command_set_log_exitcode_errors_only = QtCore.Signal(int)
+    sgnl_command_terminate_process = QtCore.Signal()
+    sgnl_command_terminate_process_for_identifier = QtCore.Signal(str)
 
     # Create and initialize
     # ------------------------------------------------------------------
