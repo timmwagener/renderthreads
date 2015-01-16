@@ -17,6 +17,7 @@
 .. raw:: html
 
 	<h1><a href="https://github.com/timmwagener/renderthreads">renderthreads</a> is a <a href="https://pypi.python.org/pypi/renderthreads/">Python</a> package that enables per-frame easy command-line multithreaded rendering for the popular compositing application <a href="http://www.thefoundry.co.uk/products/nuke/">Nuke</a>. It is created and maintained by <a href="http://www.timmwagener.com/">Timm Wagener</a>.</h1>
+
 ------------------------------------------
 
 .. raw:: html
@@ -27,6 +28,7 @@
 		<a href="http://www.kiiia.com/renderthreads/images/renderthreads_render_progress.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/renderthreads/images/icn_renderthreads_render_progress.jpg"></a>
 		<a href="http://www.kiiia.com/renderthreads/images/renderthreads_command_line.jpg" target="_blank"><img width="80" height="80" src="http://www.kiiia.com/renderthreads/images/icn_renderthreads_command_line.jpg"></a>
 	</div>
+
 ------------------------------------------
 
 .. image:: https://readthedocs.org/projects/renderthreads/badge/?version=latest
@@ -52,6 +54,11 @@
 .. image:: https://pypip.in/license/renderthreads/badge.svg?style=flat
     :target: https://pypi.python.org/pypi/renderthreads/
     :alt: License
+
+.. image:: https://badges.gitter.im/gitterHQ/gitter.png
+    :target: https://gitter.im/timmwagener/renderthreads
+    :alt: Gitter
+
 ------------------------------------------
 
 Content

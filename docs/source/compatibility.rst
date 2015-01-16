@@ -11,6 +11,7 @@
     :width: 100px
     :align: center
     :alt: renderthreads icon
+
 ------------------------------------------
 
 Compatibility
@@ -28,13 +29,28 @@ Operating systems
 
 ------------------------------------------
 
+Compatible
+**********
 * Windows7
+
+Incompatible
+************
+
+Untested
+********
+* Linux
+* MacOS
 
 Nuke versions
 -------------
 
 ------------------------------------------
 
+Compatible
+**********
 * 9.x
 * 8.x
-* 7.x/below: **Fail** because renderthreads needs Python 2.7
+
+Incompatible
+************
+* 7.x/below: **renderthreads** needs **Python 2.7**

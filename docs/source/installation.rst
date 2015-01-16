@@ -11,6 +11,7 @@
     :width: 100px
     :align: center
     :alt: renderthreads icon
+
 ------------------------------------------
 
 Installation

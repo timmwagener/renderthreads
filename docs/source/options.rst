@@ -63,6 +63,8 @@ Threads
 * **Thread timeout** is a more **important value**. It sets the time in minutes that a rendering is allowed to take before it is forcibly closed. The default is 10 minutes, but demanding nuke comps can easily take longer. **If you wonder why all your renderings are terminated, a too low timeout setting might be the reason.**
 * **Display render shell** lets you adjust wether or not you want shell windows popping up.
 * **Log exitcode errors only** Wether you just want errors and their exit codes logged (process terminated, timed out, was disabled...) or also sucess messages.
+* **Re-add broken job** Wether or not to add a job to the queue again that terminated unsuccessfully. (With an exitcode different from 0).
+* **Re-add broken job count** How often such an error job gets added again. The default is 2.
 * **Start/Stop threads** Pause rendering. Will finish all currently running jobs and then re/start or stop rendering. All the jobs remain, so this is like a **pause** function.
 * **Print queue size** Print complete count of all jobs.
 

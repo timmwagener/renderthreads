@@ -11,6 +11,7 @@
     :width: 100px
     :align: center
     :alt: renderthreads icon
+
 ------------------------------------------
 
 Quickstart
@@ -80,4 +81,4 @@ To start a command-line rendering with **renderthreads** do the following.
     :align: center
     :alt: renderthreads icon
 
-    You can disable the rendering anytime, like so. Disabling will continue to finish the jobs already started, but not begin all the other ones that are still queued.
+    You can disable the rendering anytime, like so. Disabling will kill the jobs currently running and not start those that are still queued up anymore.
