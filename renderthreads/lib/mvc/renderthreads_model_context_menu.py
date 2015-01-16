@@ -443,7 +443,8 @@ class NodesContextMenu(QtGui.QMenu):
                                                                     identifier,
                                                                     negated_priority,
                                                                     frame,
-                                                                    log_exitcode_errors_only)
+                                                                    log_exitcode_errors_only,
+                                                                    renderthreads_node)
 
                 # append
                 renderthreads_node_to_command_object_list.append([renderthreads_node, command_object])
@@ -484,8 +485,10 @@ class NodesContextMenu(QtGui.QMenu):
             command_object.sgnl_task_done.connect(self.wdgt_main.pbar_render.increment_value)
             command_object.sgnl_task_done.connect(renderthreads_node.progressbar.increment_value)
             command_object.sgnl_task_done.connect(self.wdgt_main.nodes_view.update)
-            # sgnl_log_exitcode
+            # sgnl_log
             command_object.sgnl_log.connect(self.wdgt_main.log)
+            # sgnl_readd_job
+            command_object.sgnl_readd_job.connect(self.wdgt_main.readd_job)
 
     def add_command_object_list_to_queue(self, renderthreads_node_to_command_object_list):
         """

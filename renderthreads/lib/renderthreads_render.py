@@ -51,6 +51,7 @@ class RenderCommand(QtCore.QObject):
     # ------------------------------------------------------------------
     sgnl_task_done = QtCore.Signal()
     sgnl_log = QtCore.Signal(str, int)
+    sgnl_readd_job = QtCore.Signal(RenderCommand, int)
 
     # Creation and Initialization
     # ------------------------------------------------------------------
@@ -71,7 +72,8 @@ class RenderCommand(QtCore.QObject):
                     identifier,
                     priority,
                     frame,
-                    log_exitcode_errors_only):
+                    log_exitcode_errors_only,
+                    renderthreads_node):
         """
         Customize RenderCommand instance.
         Parameter timeout is in seconds NOT in ms.
@@ -102,11 +104,15 @@ class RenderCommand(QtCore.QObject):
         self.frame = frame
         # log_exitcode_errors_only
         self.log_exitcode_errors_only = log_exitcode_errors_only
+        # renderthreads_node
+        self.renderthreads_node = renderthreads_node  # only used for readd_job in main wdgt
 
         # process
         self.process = None
         # enabled
         self.enabled = True
+        # readd_count
+        self.readd_count = 0
 
         # logger_name
         self.logger_name = '{0}-{1}-{2}'.format(self.__class__.__name__, identifier, frame)
@@ -208,6 +214,8 @@ class RenderCommand(QtCore.QObject):
         self.sgnl_task_done.emit()
         # log_exitcode
         self.log_exitcode(exitcode)
+        # readd_job
+        self.sgnl_readd_job.emit(self, exitcode)
 
         # return
         return exitcode
@@ -456,3 +464,26 @@ The default uses a render license.({0})'.format(exitcode)
         """
 
         self.log_exitcode_errors_only = value
+
+    def get_readd_count(self):
+        """
+        Return self.readd_count.
+        """
+
+        return self.readd_count
+
+    @QtCore.Slot(int)
+    def set_readd_count(self, value):
+        """
+        Set self.readd_count.
+        """
+
+        self.readd_count = value
+
+    @QtCore.Slot()
+    def increment_readd_count(self):
+        """
+        Increment self.readd_count.
+        """
+
+        self.readd_count += 1

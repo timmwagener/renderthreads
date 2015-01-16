@@ -53,7 +53,6 @@ class WorkerThread(QtCore.QThread):
     # ------------------------------------------------------------------
     restart = QtCore.Signal()
     setup_timer = QtCore.Signal()
-    task_done = QtCore.Signal()
 
     # Creation and Initialization
     # ------------------------------------------------------------------
@@ -182,8 +181,6 @@ class WorkerThread(QtCore.QThread):
             finally:
                 # notify queue
                 self.queue.task_done()
-                # notify gui
-                self.task_done.emit()
 
 
 # ThreadManager class

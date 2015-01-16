@@ -111,6 +111,8 @@ INITIAL_THREAD_INTERVAL = 200  # msec
 INITIAL_THREAD_TIMEOUT = 10  # min
 INITIAL_DISPLAY_SHELL = 1  # Can be 0 or 1
 INITIAL_LOG_EXITCODE_ERRORS_ONLY = 1  # Can be 0 or 1
+INITIAL_READD_BROKEN_JOB = 1  # Can be 0 or 1
+INITIAL_READD_BROKEN_JOB_COUNT = 2
 INITIAL_SAVE_SCRIPT_BEFORE_RENDER = 1  # msec
 
 INITIAL_PRIORITY = 50  # Range is from 1 - 100. PriorityQueue values are negated so 1 is highest, 100 lowest
@@ -162,6 +164,15 @@ which can happen when it has finished or has been terminated etc.\n\
 The return code indicates whether or not the process was successfull.\n\
 This flag determines if all return codes or just the ones that were\n\
 not sucessfull should be logged. The default is logging only errors.'.format(TEXT_DIVIDER)
+
+TT_INITIAL_READD_BROKEN_JOB = 'Re-add broken job\n\
+{0}\n\
+When a process has returned an exit code that indicates\n\
+an error, wether or not to add this job to the queue again.'.format(TEXT_DIVIDER)
+
+TT_INITIAL_READD_BROKEN_JOB_COUNT = 'Re-add broken job count\n\
+{0}\n\
+How many times a broken job will be added to the queue again.'.format(TEXT_DIVIDER)
 
 TT_LOGGING_LEVEL = 'Logging level\n\
 {0}\n\
