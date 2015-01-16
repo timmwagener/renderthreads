@@ -18,6 +18,7 @@
 [![Development Status](https://pypip.in/status/renderthreads/badge.svg?style=flat)](https://pypi.python.org/pypi/renderthreads/)
 [![Download format](https://pypip.in/format/renderthreads/badge.svg?style=flat)](https://pypi.python.org/pypi/renderthreads/)
 [![License](https://pypip.in/license/renderthreads/badge.svg?style=flat)](https://pypi.python.org/pypi/renderthreads/)
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/timmwagener/renderthreads)
 
 -----------------------
 
