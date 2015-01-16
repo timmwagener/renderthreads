@@ -32,6 +32,8 @@ Features
 -----------------------
 * **Improve render speed**
 	Per-frame parallel command-line rendering made easy.
+* **Safety fallback**
+	Jobs that terminated unsuccessfully are added back to the job list.
 * **Monitor and adjust while rendering**
 	You can adjust several parameters during command-line rendering, like the number of cores or the verbosity.
 * **Enable/disable jobs while rendering**
