@@ -85,11 +85,6 @@ from lib import renderthreads_threads
 if(do_reload):
     reload(renderthreads_threads)
 
-# renderthreads_render
-from lib import renderthreads_render
-if(do_reload):
-    reload(renderthreads_render)
-
 # lib.gui
 
 # renderthreads_gui_helper
@@ -279,19 +274,24 @@ class RenderThreads(form_class, base_class):
         # log
         self.logger.log(logging_level, msg)
 
-    @QtCore.Slot(renderthreads_render.RenderCommand, int)
-    def readd_job(self, command_object, exitcode):
+    @QtCore.Slot(list, int)
+    def readd_job(self, command_object_list, exitcode):
         """
         Check if job should be readded to the
         queue and if yes, do so.
         """
+
+        # command_object
+        # Only wrapped in type list to avaoid sgnl error.
+        # Always contains one RenderCommand item.
+        command_object = command_object_list[0]
 
         # check exitcode
         if (exitcode != 0):
 
             # command_object enabled?
             if (command_object.get_enabled()):
-        
+
                 # do_readd
                 do_readd = self.sldr_readd_broken_job.get_value()
 
@@ -305,7 +305,7 @@ class RenderThreads(form_class, base_class):
                     if (command_object.get_readd_count() < max_readd_count):
 
                         try:
-                            
+
                             # increment_readd_count
                             command_object.increment_readd_count()
 
@@ -317,13 +317,12 @@ class RenderThreads(form_class, base_class):
                             self.thread_manager.add_to_queue(command_object)
 
                             # log
-                            self.logger.debug('Readded {0} ({1})'.format(command_object.logger_name,
+                            self.logger.critical('Readded {0} ({1})'.format(command_object.logger_name,
                                                                                     exitcode))
                         except:
-                            
+
                             # log
                             self.logger.critical('Error readding command object to queue')
-
 
     # Misc
     # ------------------------------------------------------------------

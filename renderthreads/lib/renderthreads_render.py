@@ -51,7 +51,7 @@ class RenderCommand(QtCore.QObject):
     # ------------------------------------------------------------------
     sgnl_task_done = QtCore.Signal()
     sgnl_log = QtCore.Signal(str, int)
-    sgnl_readd_job = QtCore.Signal(RenderCommand, int)
+    sgnl_readd_job = QtCore.Signal(list, int)
 
     # Creation and Initialization
     # ------------------------------------------------------------------
@@ -215,7 +215,9 @@ class RenderCommand(QtCore.QObject):
         # log_exitcode
         self.log_exitcode(exitcode)
         # readd_job
-        self.sgnl_readd_job.emit(self, exitcode)
+        # Wrap RenderCommand in list to circumvent error
+        # https://github.com/timmwagener/renderthreads/issues/4
+        self.sgnl_readd_job.emit([self], exitcode)
 
         # return
         return exitcode
