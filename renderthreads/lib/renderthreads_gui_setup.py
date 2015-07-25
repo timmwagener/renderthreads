@@ -440,6 +440,7 @@ might be invalid and cause the render to fail.'.format(TEXT_DIVIDER)
     wdgt.lbl_command_line.setObjectName('lbl_command_line')
     wdgt.lbl_command_line.setText('temp')
     wdgt.lbl_command_line.setWordWrap(True)
+    wdgt.lbl_command_line.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
     lyt_frm_command_line.addWidget(wdgt.lbl_command_line)
 
 
