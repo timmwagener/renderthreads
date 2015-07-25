@@ -293,7 +293,7 @@ class RenderThreads(form_class, base_class):
             if (command_object.get_enabled()):
 
                 # do_readd
-                do_readd = self.sldr_readd_broken_job.get_value()
+                do_readd = self.sldr_readd_broken_job_count.get_value()
 
                 # check do_readd
                 if (do_readd):

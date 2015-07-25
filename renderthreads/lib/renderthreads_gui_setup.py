@@ -103,7 +103,6 @@ INITIAL_THREAD_INTERVAL = renderthreads_globals.INITIAL_THREAD_INTERVAL
 INITIAL_THREAD_TIMEOUT = renderthreads_globals.INITIAL_THREAD_TIMEOUT
 INITIAL_DISPLAY_SHELL = renderthreads_globals.INITIAL_DISPLAY_SHELL
 INITIAL_LOG_EXITCODE_ERRORS_ONLY = renderthreads_globals.INITIAL_LOG_EXITCODE_ERRORS_ONLY
-INITIAL_READD_BROKEN_JOB = renderthreads_globals.INITIAL_READD_BROKEN_JOB
 INITIAL_READD_BROKEN_JOB_COUNT = renderthreads_globals.INITIAL_READD_BROKEN_JOB_COUNT
 INITIAL_SAVE_SCRIPT_BEFORE_RENDER = renderthreads_globals.INITIAL_SAVE_SCRIPT_BEFORE_RENDER
 
@@ -121,7 +120,6 @@ TT_THREAD_INTERVAL = renderthreads_globals.TT_THREAD_INTERVAL
 TT_THREAD_TIMEOUT = renderthreads_globals.TT_THREAD_TIMEOUT
 TT_DISPLAY_SHELL = renderthreads_globals.TT_DISPLAY_SHELL
 TT_LOG_EXITCODE_ERRORS_ONLY = renderthreads_globals.TT_LOG_EXITCODE_ERRORS_ONLY
-TT_INITIAL_READD_BROKEN_JOB = renderthreads_globals.TT_INITIAL_READD_BROKEN_JOB
 TT_INITIAL_READD_BROKEN_JOB_COUNT = renderthreads_globals.TT_INITIAL_READD_BROKEN_JOB_COUNT
 TT_LOGGING_LEVEL = renderthreads_globals.TT_LOGGING_LEVEL
 TT_SAVE_SCRIPT = renderthreads_globals.TT_SAVE_SCRIPT
@@ -365,19 +363,9 @@ def create_sub_threads_menu(wdgt):
     wdgt.sldr_log_exitcode_errors_only.setToolTip(TT_LOG_EXITCODE_ERRORS_ONLY)
     frm_threads.addWidget(wdgt.sldr_log_exitcode_errors_only)
 
-    # sldr_readd_broken_job
-    wdgt.sldr_readd_broken_job = renderthreads_slider_widget.Slider(header='Re-add broken job',
-                                                                    minimum=0,
-                                                                    maximum=1,
-                                                                    initial_value=INITIAL_READD_BROKEN_JOB)
-    wdgt.sldr_readd_broken_job.set_tick_position(QtGui.QSlider.TicksBelow)
-    wdgt.sldr_readd_broken_job.set_tick_interval(1)
-    wdgt.sldr_readd_broken_job.setToolTip(TT_INITIAL_READD_BROKEN_JOB)
-    frm_threads.addWidget(wdgt.sldr_readd_broken_job)
-
     # sldr_readd_broken_job_count
     wdgt.sldr_readd_broken_job_count = renderthreads_slider_widget.Slider(header='Re-add broken job count',
-                                                                            minimum=1,
+                                                                            minimum=0,
                                                                             maximum=10,
                                                                             initial_value=INITIAL_READD_BROKEN_JOB_COUNT)
     wdgt.sldr_readd_broken_job_count.set_tick_position(QtGui.QSlider.TicksBelow)
