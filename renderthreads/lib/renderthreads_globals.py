@@ -109,7 +109,7 @@ COMMAND_LINE_FLAG_SPACING = 4
 # ------------------------------------------------------------------
 INITIAL_THREAD_INTERVAL = 200  # msec
 INITIAL_THREAD_TIMEOUT = 10  # min
-INITIAL_DISPLAY_SHELL = 1  # Can be 0 or 1
+INITIAL_DISPLAY_SHELL = 0  # Can be 0 or 1
 INITIAL_LOG_EXITCODE_ERRORS_ONLY = 1  # Can be 0 or 1
 INITIAL_READD_BROKEN_JOB = 1  # Can be 0 or 1
 INITIAL_READD_BROKEN_JOB_COUNT = 2
